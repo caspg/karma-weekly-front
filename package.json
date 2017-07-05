@@ -1,0 +1,12 @@
+{
+  "name": "karma-weekly-front",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Kacper Golinski <kacper.golinski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "beta",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
