@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppHead from '../../components/AppHead';
+import AppHead from 'src/components/AppHead';
 
 function Home() {
   return (

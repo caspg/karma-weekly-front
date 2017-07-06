@@ -8,5 +8,10 @@
     "comma-dangle": ["error", "always-multiline"],
     "react/jsx-filename-extension": 0,
     "no-use-before-define": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
   }
 }
