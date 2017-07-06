@@ -10,12 +10,12 @@ function Home() {
     <div>
       <AppHead title="Karma Weekly" />
 
-      <div className="grid-x sections-container">
-        <div className="cell small-5">
+      <div className="row sections-container">
+        <div className="col-xs-5">
           <HomeMainSection />
         </div>
 
-        <div className="cell small-7">
+        <div className="col-xs-7">
           <HomeImageSection />
         </div>
       </div>

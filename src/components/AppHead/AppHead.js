@@ -11,6 +11,7 @@ function AppHead(props) {
     <Head>
       <title>{props.title}</title>
 
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/css/foundation.min.css" crossOrigin="anonymous" />
     </Head>
   );
