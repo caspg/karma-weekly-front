@@ -3,6 +3,16 @@
     "next/babel"
   ],
   "plugins": [
-    ["module-resolver"]
-  ]
+    ["module-resolver", {
+      "root": ["./"]
+    }]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        ["env", { "modules": "commonjs" }],
+        "next/babel"
+      ]
+    }
+  }
 }

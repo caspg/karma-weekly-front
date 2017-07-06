@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppHead component matches a snapshot 1`] = `
+<SideEffect(Head)>
+  <title>
+    Head title
+  </title>
+  <link
+    crossOrigin="anonymous"
+    href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/css/foundation.min.css"
+    rel="stylesheet"
+  />
+</SideEffect(Head)>
+`;
