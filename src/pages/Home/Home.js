@@ -10,7 +10,7 @@ function Home() {
     <div>
       <AppHead title="Karma Weekly" />
 
-      <div className="grid-x">
+      <div className="grid-x sections-container">
         <div className="cell small-5">
           <HomeMainSection />
         </div>
@@ -19,6 +19,12 @@ function Home() {
           <HomeImageSection />
         </div>
       </div>
+
+      <style jsx>{`
+        .sections-container {
+          height: 100vh;
+        }
+      `}</style>
     </div>
   );
 }
