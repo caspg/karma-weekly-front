@@ -2,7 +2,7 @@ import React from 'react';
 
 import AppHead from 'src/components/AppHead';
 
-import HomeMainSection from './components/HomeMainSection';
+import HomeMainSection from './containers/HomeMainSection';
 import HomeImageSection from './components/HomeImageSection';
 
 function Home() {

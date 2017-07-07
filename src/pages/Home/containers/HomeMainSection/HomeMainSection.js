@@ -1,5 +1,7 @@
 import React from 'react';
 
+import withApollo from 'src/hocs/withApollo';
+
 function HomeMainSection() {
   return (
     <div className="main-section-container">
@@ -46,4 +48,4 @@ function HomeMainSection() {
   );
 }
 
-export default HomeMainSection;
+export default withApollo(HomeMainSection);
