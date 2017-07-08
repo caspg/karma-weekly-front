@@ -2,7 +2,7 @@ import React from 'react';
 
 import AppHead from 'src/components/AppHead';
 
-import HomeMainSection from './containers/HomeMainSection';
+import HomeMainSectionContainer from './containers/HomeMainSectionContainer';
 import HomeImageSection from './components/HomeImageSection';
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
 
       <div className="row sections-container">
         <div className="col-xs-5">
-          <HomeMainSection />
+          <HomeMainSectionContainer />
         </div>
 
         <div className="col-xs-7">

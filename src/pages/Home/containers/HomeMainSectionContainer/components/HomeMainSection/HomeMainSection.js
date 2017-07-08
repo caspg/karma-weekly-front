@@ -1,11 +1,13 @@
 import React from 'react';
 
-import withApollo from 'src/hocs/withApollo';
+import LoginForm from './components/LoginForm';
 
 function HomeMainSection() {
   return (
     <div className="main-section-container">
-      <h1 className="text-center"><strong>Karma Weekly</strong></h1>
+      <h1 className="text-center">
+        <strong>Karma Weekly</strong>
+      </h1>
 
       <div className="row center-xs">
         <p className="intro-text">
@@ -14,16 +16,7 @@ function HomeMainSection() {
       </div>
 
       <div className="row center-xs">
-        <form>
-          <input type="text" placeholder="Your email address" />
-
-          <input
-            type="submit"
-            className="button small expanded warning"
-            value="Log in"
-          />
-
-        </form>
+        <LoginForm />
       </div>
 
       <style jsx>{`
@@ -37,15 +30,9 @@ function HomeMainSection() {
           text-align: left;
           font-size: 1.2em;
         }
-
-        form {
-          width: 100%;
-          margin-top: 50px;
-          max-width: 500px;
-        }
       `}</style>
     </div>
   );
 }
 
-export default withApollo(HomeMainSection);
+export default HomeMainSection;
