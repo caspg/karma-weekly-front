@@ -8,6 +8,7 @@ import ErrorMessage from './ErrorMessage';
 LoginFormContent.propTypes = {
   onEamilChange: PropTpyes.func.isRequired,
   onSubmit: PropTpyes.func.isRequired,
+  isSending: PropTpyes.bool.isRequired,
   validationError: PropTpyes.string,
 };
 
@@ -35,7 +36,7 @@ function LoginFormContent(props) {
           type="submit"
           className="submit-btn button small expanded warning"
           value="Log in"
-          disabled={hasError}
+          disabled={hasError || props.isSending}
         />
 
       </form>

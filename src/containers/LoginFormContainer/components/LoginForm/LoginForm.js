@@ -22,6 +22,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       validationError: null,
+      isSending: false,
     };
   }
 
@@ -44,6 +45,9 @@ class LoginForm extends Component {
     }
 
     console.log('Email submitted: ', email);
+    this.setState({ isSending: true });
+    // just for now
+    setTimeout(() => this.setState({ isSending: false }), 2000);
   }
 
   render() {
@@ -52,6 +56,7 @@ class LoginForm extends Component {
         onEamilChange={this.handleEmailChange}
         onSubmit={this.handleSubmit}
         validationError={this.state.validationError}
+        isSending={this.state.isSending}
       />
     );
   }
