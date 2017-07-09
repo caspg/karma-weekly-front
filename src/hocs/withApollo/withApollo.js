@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
 
+import getComponentDisplayName from 'src/utils/getComponentDisplayName';
 import initApollo from './initApollo';
-
-function getComponentDisplayName(ComposedComponent) {
-  return ComposedComponent.displayName || ComposedComponent.name || 'Component';
-}
 
 function withApollo(ComposedComponent) {
   class ComponentWithApollo extends Component {
