@@ -9,6 +9,7 @@ module.exports = {
     config.plugins.push(
       new webpack.DefinePlugin({
         'process.env.GRAPHQL_URI': JSON.stringify(process.env.GRAPHQL_URI),
+        'process.env.MOCK_APOLLO': JSON.stringify(process.env.MOCK_APOLLO),
       })
     );
 
