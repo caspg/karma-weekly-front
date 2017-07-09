@@ -1,6 +1,7 @@
 import React from 'react';
 
-function LoginForm() {
+function LoginForm(props) {
+  console.log(props);
   return (
     <div className="form-container">
       <form>

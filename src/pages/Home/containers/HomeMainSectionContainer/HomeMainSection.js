@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import LoginFormContainer from 'src/containers/LoginFormContainer';
 import Spinner from 'src/components/Spinner';
-import LoginForm from './components/LoginForm';
 
 HomeMainSection.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -26,7 +26,7 @@ function HomeMainSection(props) {
 
           {props.isLoadingUser ?
             <Spinner mainColor="#ffae00" radius="9em" /> :
-            <LoginForm />}
+            <LoginFormContainer />}
 
         </div>
       </div>
