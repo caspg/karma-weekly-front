@@ -1,11 +1,21 @@
 import React from 'react';
+import PropTpyes from 'prop-types';
 
-function LoginForm(props) {
-  console.log(props);
+LoginFormContent.propTypes = {
+  onEamilChange: PropTpyes.func.isRequired,
+  onSubmit: PropTpyes.func.isRequired,
+};
+
+function LoginFormContent(props) {
   return (
     <div className="form-container">
-      <form>
-        <input type="text" placeholder="Your email address" />
+      <form onSubmit={props.onSubmit}>
+        <input
+          name="email"
+          type="text"
+          placeholder="Your email address"
+          onChange={props.onEamilChange}
+        />
 
         <input
           type="submit"
@@ -33,4 +43,4 @@ function LoginForm(props) {
   );
 }
 
-export default LoginForm;
+export default LoginFormContent;
