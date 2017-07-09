@@ -1,3 +1,5 @@
-import HomeMainSection from './components/HomeMainSection';
+import withLoggedUser from 'src/hocs/withLoggedUser';
 
-export default HomeMainSection;
+import HomeMainSection from './HomeMainSection';
+
+export default withLoggedUser(HomeMainSection);

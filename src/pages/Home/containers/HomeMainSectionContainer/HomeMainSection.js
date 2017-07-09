@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// import Spinner from 'src/components/Spinner';
+import Spinner from 'src/components/Spinner';
 import LoginForm from './components/LoginForm';
 
-function HomeMainSection() {
+HomeMainSection.propTypes = {
+  isLoadingUser: PropTypes.bool.isRequired,
+};
+
+function HomeMainSection(props) {
   return (
     <div className="main-section-container">
       <h1 className="text-center">
@@ -18,8 +23,11 @@ function HomeMainSection() {
 
       <div className="row center-xs">
         <div className="card form-card">
-          <LoginForm />
-          {/* <Spinner mainColor="#ffae00" radius="9em" /> */}
+
+          {props.isLoadingUser ?
+            <Spinner mainColor="#ffae00" radius="9em" /> :
+            <LoginForm />}
+
         </div>
       </div>
 
