@@ -1,5 +1,6 @@
 import React from 'react';
 
+// import Spinner from 'src/components/Spinner';
 import LoginForm from './components/LoginForm';
 
 function HomeMainSection() {
@@ -16,7 +17,10 @@ function HomeMainSection() {
       </div>
 
       <div className="row center-xs">
-        <LoginForm />
+        <div className="card form-card">
+          <LoginForm />
+          {/* <Spinner mainColor="#ffae00" radius="9em" /> */}
+        </div>
       </div>
 
       <style jsx>{`
@@ -29,6 +33,12 @@ function HomeMainSection() {
           max-width: 500px;
           text-align: left;
           font-size: 1.2em;
+        }
+
+        .form-card {
+          margin-top: 50px;
+          max-width: 600px;
+          padding: 50px 50px;
         }
       `}</style>
     </div>

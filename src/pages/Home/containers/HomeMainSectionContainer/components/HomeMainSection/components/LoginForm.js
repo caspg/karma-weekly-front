@@ -8,7 +8,7 @@ function LoginForm() {
 
         <input
           type="submit"
-          className="button small expanded warning"
+          className="submit-btn button small expanded warning"
           value="Log in"
         />
 
@@ -22,8 +22,10 @@ function LoginForm() {
         form {
           width: 100%;
           margin: 0 auto;
-          margin-top: 50px;
-          max-width: 500px;
+        }
+
+        .submit-btn {
+          margin: 0;
         }
       `}</style>
     </div>
