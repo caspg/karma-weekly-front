@@ -1,5 +1,6 @@
 import React from 'react';
 
+import withApollo from 'src/hocs/withApollo';
 import AppHead from 'src/components/AppHead';
 
 import HomeMainSectionContainer from './containers/HomeMainSectionContainer';
@@ -29,4 +30,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default withApollo(Home);
