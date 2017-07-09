@@ -12,11 +12,11 @@ function Home() {
       <AppHead title="Karma Weekly" />
 
       <div className="row sections-container">
-        <div className="col-xs-5">
+        <div className="col-xs-12 col-sm-5">
           <HomeMainSectionContainer />
         </div>
 
-        <div className="col-xs-7">
+        <div className="col-xs-12 col-sm-7">
           <HomeImageSection />
         </div>
       </div>
