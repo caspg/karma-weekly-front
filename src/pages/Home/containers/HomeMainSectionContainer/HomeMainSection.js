@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import colors from 'src/styles/colors';
 import LoginFormContainer from 'src/containers/LoginFormContainer';
+import FlashMessagesList from 'src/containers/FlashMessagesList';
 import Spinner from 'src/components/Spinner';
 
 HomeMainSection.propTypes = {
@@ -12,7 +13,9 @@ HomeMainSection.propTypes = {
 function HomeMainSection(props) {
   return (
     <div className="main-section-container">
-      <h1 className="text-center">
+      <FlashMessagesList />
+
+      <h1 className="text-center main-text">
         <strong>Karma Weekly</strong>
       </h1>
 
@@ -24,6 +27,7 @@ function HomeMainSection(props) {
 
       <div className="row center-xs">
         <div className="form-container">
+
           {props.isLoadingUser ?
             <Spinner mainColor={colors.orange} radius="9em" /> :
             <LoginFormContainer />}
@@ -34,6 +38,9 @@ function HomeMainSection(props) {
       <style jsx>{`
         .main-section-container {
           margin: 0 40px;
+        }
+
+        .main-text {
           margin-top: 100px;
         }
 

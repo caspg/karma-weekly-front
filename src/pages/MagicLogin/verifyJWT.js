@@ -1,0 +1,3 @@
+function verifyJWT(submitVerifyJWT, token) {
+
+}

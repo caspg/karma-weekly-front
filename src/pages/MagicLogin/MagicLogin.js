@@ -7,9 +7,14 @@ import jwtService from 'src/services/jwtService';
 import routes from 'src/config/routes';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
+import withFlashMessages from 'src/hocs/withFlashMessages';
 
 import withVerifyJWTMutation from './withVerifyJWTMutation';
 import MagicLoginView from './components/MagicLoginView';
+
+function createErrorMessageObject(title, body) {
+  return { id: Date.now(), type: 'alert', title, body };
+}
 
 class MagicLogin extends Component {
   static propTypes = {
@@ -22,6 +27,7 @@ class MagicLogin extends Component {
       }),
     }).isRequired,
     submitVerifyJWT: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -36,7 +42,7 @@ class MagicLogin extends Component {
     if (nextProps.isLoadingUser) return;
 
     if (nextProps.isUserLogged) {
-      Router.replace(routes.home);
+      Router.replace(routes.dashboard);
     }
 
     if (!nextProps.isUserLogged && nextState.isValidatingToken) {
@@ -47,31 +53,50 @@ class MagicLogin extends Component {
   handleValidateToken = async () => {
     const { errorMessage, longLiveJwt } = await this.verifyJWT();
 
-    if (errorMessage) {
-      this.setState({ isValidatingToken: false, errorMessage });
-      return;
-    }
+    this.setState({ isValidatingToken: false }, () => {
+      if (errorMessage) {
+        this.props.addFlashMessage(errorMessage);
+        Router.replace(routes.home);
 
-    jwtService.saveInLocal(longLiveJwt);
-    Router.replace(routes.dashboard);
+        return;
+      }
+
+      jwtService.saveInLocal(longLiveJwt);
+      Router.replace(routes.dashboard);
+    });
   }
 
   verifyJWT = async () => {
     const token = this.props.url.query.m;
 
     if (!token) {
-      return { errorMessage: 'Looks like url is malformed. Please make sure you\'ve clicked correct link in the email or go to the home page and submit your email address again.' };
+      const errorMessage = createErrorMessageObject(
+        'Looks like magic link is malformed',
+        'Please make sure you\'ve clicked correct link in the email or submit your email address again.',
+      );
+
+      return { errorMessage };
     }
 
     try {
       const { data } = await this.props.submitVerifyJWT(token);
       if (data.verifyJWT.error || !data.verifyJWT.longLiveJwt) {
-        return { errorMessage: 'Your magic link is invalid. Probably it already expired. Please go to the home page and submit your email address again.' };
+        const errorMessage = createErrorMessageObject(
+          'Your magic link is invalid',
+          'Probably your magic link is already expired. Please submit your email address again.'
+        );
+
+        return { errorMessage };
       }
 
       return { longLiveJwt: data.verifyJWT.longLiveJwt };
     } catch (e) {
-      return { errorMessage: 'There was an internal server error. Please go to the home page and submit your email address again.' };
+      const errorMessage = createErrorMessageObject(
+        'There was an internal server error',
+        'Please submit your email address again.'
+      );
+
+      return { errorMessage };
     }
   }
 
@@ -89,4 +114,5 @@ export default compose(
   withApollo,
   withLoggedUser,
   withVerifyJWTMutation,
+  withFlashMessages,
 )(MagicLogin);
