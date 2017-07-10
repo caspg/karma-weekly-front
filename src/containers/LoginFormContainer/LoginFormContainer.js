@@ -1,6 +1,28 @@
+import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
+import PropTypes from 'prop-types';
 
 import LoginForm from './components/LoginForm';
+
+class LoginFormContainer extends Component {
+  static propTypes = {
+    submitLogin: PropTypes.func.isRequired,
+  }
+
+  handleSubmitLogin = async (email) => {
+    const { data } = await this.props.submitLogin(email);
+
+    if (!data || data.emailLogin.error) {
+      throw Error(data.error);
+    }
+  }
+
+  render() {
+    return (
+      <LoginForm submitLogin={this.handleSubmitLogin} />
+    );
+  }
+}
 
 const EMAIL_LOGIN_MUTATION = gql`
   mutation EmailLoginForm($email: String!) {
@@ -17,4 +39,4 @@ const withEmailLoginMutation = graphql(EMAIL_LOGIN_MUTATION, {
   }),
 });
 
-export default withEmailLoginMutation(LoginForm);
+export default withEmailLoginMutation(LoginFormContainer);

@@ -3,11 +3,11 @@ import PropTpyes from 'prop-types';
 
 import colors from 'src/styles/colors';
 
-ErrorMessage.propTypes = {
+ValidationErrorMessage.propTypes = {
   validationError: PropTpyes.string.isRequired,
 };
 
-function ErrorMessage(props) {
+function ValidationErrorMessage(props) {
   return (
     <div>
       <p>{props.validationError}</p>
@@ -22,4 +22,4 @@ function ErrorMessage(props) {
   );
 }
 
-export default ErrorMessage;
+export default ValidationErrorMessage;

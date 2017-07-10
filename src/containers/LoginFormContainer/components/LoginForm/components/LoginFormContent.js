@@ -5,17 +5,23 @@ import colors from 'src/styles/colors';
 
 import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
-import ErrorMessage from './ErrorMessage';
+import ValidationErrorMessage from './ValidationErrorMessage';
+import LoginSuccessMessage from './LoginSuccessMessage';
+import LoginErrorMessage from './LoginErrorMessage';
 
 LoginFormContent.propTypes = {
   onEamilChange: PropTpyes.func.isRequired,
   onSubmit: PropTpyes.func.isRequired,
   isSending: PropTpyes.bool.isRequired,
+  isLoginSuccess: PropTpyes.bool.isRequired,
+  isServerError: PropTpyes.bool.isRequired,
   validationError: PropTpyes.string,
+  emailValue: PropTpyes.string,
 };
 
 LoginFormContent.defaultProps = {
   validationError: null,
+  emailValue: '',
 };
 
 function LoginFormContent(props) {
@@ -23,7 +29,9 @@ function LoginFormContent(props) {
 
   return (
     <div className="form-container">
-      {hasError && <ErrorMessage validationError={props.validationError} />}
+      {props.isLoginSuccess && <LoginSuccessMessage />}
+      {props.isServerError && <LoginErrorMessage />}
+      {hasError && <ValidationErrorMessage validationError={props.validationError} />}
 
       <form onSubmit={props.onSubmit}>
         <input
@@ -31,13 +39,16 @@ function LoginFormContent(props) {
           type="text"
           placeholder="Your email address"
           onChange={props.onEamilChange}
+          value={props.emailValue}
           style={{ borderColor: hasError ? colors.alert : '' }}
+          disabled={props.isLoginSuccess}
         />
 
         <ButtonWithSpinner
           type="submit"
           className="submit-btn button small expanded warning"
-          disabled={hasError || props.isSending}
+          disabled={hasError || props.isSending || props.isLoginSuccess}
+          isLoading={props.isSending}
         >
           Log in
         </ButtonWithSpinner>

@@ -32,6 +32,7 @@ const resolvers = {
     emailLogin: () => new Promise((resolve) => {
       setTimeout(() => (
         resolve({ error: null, status: 200 })
+        // resolve({ error: 'some server error', status: 500 })
       ), 1000);
     }),
   },

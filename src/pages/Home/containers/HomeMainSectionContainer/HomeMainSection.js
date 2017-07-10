@@ -22,7 +22,7 @@ function HomeMainSection(props) {
       </div>
 
       <div className="row center-xs">
-        <div className="card form-card">
+        <div className="form-container">
 
           {props.isLoadingUser ?
             <Spinner mainColor="#ffae00" radius="9em" /> :
@@ -43,8 +43,9 @@ function HomeMainSection(props) {
           font-size: 1.2em;
         }
 
-        .form-card {
+        .form-container {
           margin-top: 50px;
+          width: 100%;
           max-width: 600px;
           padding: 50px 50px;
         }
