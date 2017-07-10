@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'react-apollo';
 
 import routes from 'src/config/routes';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
 
+import withVerifyJWTMutation from './withVerifyJWTMutation';
 import MagicLoginView from './components/MagicLoginView';
 
 class MagicLogin extends Component {
@@ -17,6 +19,7 @@ class MagicLogin extends Component {
         m: PropTypes.string,
       }),
     }).isRequired,
+    submitVerifyJWT: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -35,16 +38,37 @@ class MagicLogin extends Component {
     }
 
     if (!nextProps.isUserLogged && nextState.isValidatingToken) {
-      this.validateToken();
+      this.handleValidateToken();
     }
   }
 
-  validateToken = () => {
+  handleValidateToken = async () => {
+    const errorMessage = await this.verifyJWT();
+
+    if (errorMessage) {
+      this.setState({ isValidatingToken: false, errorMessage });
+    }
+  }
+
+  /**
+   * Returns error message when JWT is not valid.
+   */
+  verifyJWT = async () => {
     const token = this.props.url.query.m;
 
     if (!token) {
-      const errorMessage = 'Looks like url is malformed. Please make sure you clicked correct link in the email or go to the home page and submit your email address again.';
-      this.setState({ isValidatingToken: false, errorMessage });
+      return 'Looks like url is malformed. Please make sure you\'ve clicked correct link in the email or go to the home page and submit your email address again.';
+    }
+
+    try {
+      const { data } = await this.props.submitVerifyJWT(token);
+      if (data.verifyJWT.error || !data.verifyJWT.longLiveJwt) {
+        return 'Your magic link is invalid. Probably it already expired. Please go to the home page and submit your email address again.';
+      }
+
+      return null;
+    } catch (e) {
+      return 'There was an internal server error. Please go to the home page and submit your email address again.';
     }
   }
 
@@ -58,6 +82,8 @@ class MagicLogin extends Component {
   }
 }
 
-export default withApollo(
-  withLoggedUser(MagicLogin)
-);
+export default compose(
+  withApollo,
+  withLoggedUser,
+  withVerifyJWTMutation,
+)(MagicLogin);

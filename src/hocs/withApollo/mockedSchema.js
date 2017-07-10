@@ -9,12 +9,19 @@ const typeDefs = `
     status: Int!
   }
 
+  type VerifyJWTResult {
+    error: String
+    status: Int!
+    longLiveJwt: String
+  }
+
   type Query {
     user: User
   }
 
   type Mutation {
     emailLogin(email: String!): EmailLoginResult
+    verifyJWT(token: String!): VerifyJWTResult
   }
 `;
 
@@ -24,17 +31,21 @@ const user = {
   subreddits: [],
 };
 
+function timedOutResult(result) {
+  return new Promise((resolve) => {
+    setTimeout(() => (
+      resolve(result)
+    ), 1000);
+  });
+}
+
 const resolvers = {
   Query: {
     user: () => user,
   },
   Mutation: {
-    emailLogin: () => new Promise((resolve) => {
-      setTimeout(() => (
-        resolve({ error: null, status: 200 })
-        // resolve({ error: 'some server error', status: 500 })
-      ), 1000);
-    }),
+    emailLogin: () => timedOutResult({ error: null, status: 200 }),
+    verifyJWT: () => timedOutResult({ error: null, status: 200, longLiveJwt: 'long-live-json-web-token' }),
   },
 };
 
