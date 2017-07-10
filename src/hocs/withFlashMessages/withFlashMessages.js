@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 
 import getComponentDisplayName from 'src/utils/getComponentDisplayName';
 
-let globalFlashMessages = [
-  // { id: 1, type: 'success', message: { title: 'Message title', body: 'Lorem ipsum dolor elo.' } },
-  // { id: 2, type: 'alert', message: { title: 'Alert Message title', body: 'Lorem ipsum dolor elo.' } },
-];
+let globalFlashMessages = [];
 function updateGlobalMessages(newMessages) {
   globalFlashMessages = newMessages;
 }

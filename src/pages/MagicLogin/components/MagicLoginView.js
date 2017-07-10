@@ -5,15 +5,8 @@ import colors from 'src/styles/colors';
 import AppHead from 'src/components/AppHead';
 import Spinner from 'src/components/Spinner';
 
-import ErrorMessage from './ErrorMessage';
-
 MagicLoginView.propTypes = {
   isValidatingToken: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string,
-};
-
-MagicLoginView.defaultProps = {
-  errorMessage: null,
 };
 
 function MagicLoginView(props) {
@@ -35,9 +28,6 @@ function MagicLoginView(props) {
         <div className="message-container">
           {props.isValidatingToken &&
             <Spinner mainColor={colors.orange} radius="8em" />}
-
-          {(!props.isValidatingToken && props.errorMessage) &&
-            <ErrorMessage message={props.errorMessage} />}
         </div>
       </div>
 

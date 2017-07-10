@@ -11,10 +11,7 @@ import withFlashMessages from 'src/hocs/withFlashMessages';
 
 import withVerifyJWTMutation from './withVerifyJWTMutation';
 import MagicLoginView from './components/MagicLoginView';
-
-function createErrorMessageObject(title, body) {
-  return { id: Date.now(), type: 'alert', title, body };
-}
+import verifyJWT from './verifyJWT';
 
 class MagicLogin extends Component {
   static propTypes = {
@@ -32,10 +29,7 @@ class MagicLogin extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      isValidatingToken: true,
-      errorMessage: '',
-    };
+    this.state = { isValidatingToken: true };
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -51,7 +45,8 @@ class MagicLogin extends Component {
   }
 
   handleValidateToken = async () => {
-    const { errorMessage, longLiveJwt } = await this.verifyJWT();
+    const token = this.props.url.query.m;
+    const { errorMessage, longLiveJwt } = await verifyJWT(this.props.submitVerifyJWT, token);
 
     this.setState({ isValidatingToken: false }, () => {
       if (errorMessage) {
@@ -66,47 +61,8 @@ class MagicLogin extends Component {
     });
   }
 
-  verifyJWT = async () => {
-    const token = this.props.url.query.m;
-
-    if (!token) {
-      const errorMessage = createErrorMessageObject(
-        'Looks like magic link is malformed',
-        'Please make sure you\'ve clicked correct link in the email or submit your email address again.',
-      );
-
-      return { errorMessage };
-    }
-
-    try {
-      const { data } = await this.props.submitVerifyJWT(token);
-      if (data.verifyJWT.error || !data.verifyJWT.longLiveJwt) {
-        const errorMessage = createErrorMessageObject(
-          'Your magic link is invalid',
-          'Probably your magic link is already expired. Please submit your email address again.'
-        );
-
-        return { errorMessage };
-      }
-
-      return { longLiveJwt: data.verifyJWT.longLiveJwt };
-    } catch (e) {
-      const errorMessage = createErrorMessageObject(
-        'There was an internal server error',
-        'Please submit your email address again.'
-      );
-
-      return { errorMessage };
-    }
-  }
-
   render() {
-    return (
-      <MagicLoginView
-        isValidatingToken={this.state.isValidatingToken}
-        errorMessage={this.state.errorMessage}
-      />
-    );
+    return <MagicLoginView isValidatingToken={this.state.isValidatingToken} />;
   }
 }
 
