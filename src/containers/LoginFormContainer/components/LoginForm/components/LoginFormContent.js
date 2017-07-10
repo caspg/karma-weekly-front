@@ -3,6 +3,8 @@ import PropTpyes from 'prop-types';
 
 import colors from 'src/styles/colors';
 
+import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
+
 import ErrorMessage from './ErrorMessage';
 
 LoginFormContent.propTypes = {
@@ -32,12 +34,13 @@ function LoginFormContent(props) {
           style={{ borderColor: hasError ? colors.alert : '' }}
         />
 
-        <input
+        <ButtonWithSpinner
           type="submit"
           className="submit-btn button small expanded warning"
-          value="Log in"
           disabled={hasError || props.isSending}
-        />
+        >
+          Log in
+        </ButtonWithSpinner>
 
       </form>
 
