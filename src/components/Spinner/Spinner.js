@@ -5,21 +5,26 @@ Spinner.propTypes = {
   mainColor: PropTypes.string,
   bgColor: PropTypes.string,
   radius: PropTypes.string,
+  borderWidth: PropTypes.string,
 };
 
 Spinner.defaultProps = {
   mainColor: '#5dc0de',
   bgColor: '#ddd',
   radius: '10em',
+  borderWidth: '0.25em',
 };
 
 function Spinner(props) {
-  const bgBorderStyle = `.25rem solid ${props.bgColor}`;
+  const bgBorderStyle = `solid ${props.bgColor}`;
+  const mainBorderStyle = `solid ${props.mainColor}`;
+
   const dynamicStyles = {
-    borderLeft: `.25rem solid ${props.mainColor}`,
-    borderTop: bgBorderStyle,
+    borderLeft: mainBorderStyle,
+    borderTop: mainBorderStyle,
     borderRight: bgBorderStyle,
     borderBottom: bgBorderStyle,
+    borderWidth: props.borderWidth,
     width: props.radius,
     height: props.radius,
   };
@@ -36,15 +41,14 @@ function Spinner(props) {
 
         .loader {
           margin: 0 auto;
-          font-size: 10px;
           position: relative;
           text-indent: -9999em;
 
           -webkit-transform: translateZ(0);
           -ms-transform: translateZ(0);
           transform: translateZ(0);
-          -webkit-animation: load8 1.1s infinite linear;
-          animation: load8 1.1s infinite linear;
+          -webkit-animation: load8 0.8s infinite linear;
+          animation: load8 0.8s infinite linear;
         }
 
         @-webkit-keyframes load8 {
