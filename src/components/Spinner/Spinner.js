@@ -30,10 +30,14 @@ function Spinner(props) {
   };
 
   return (
-    <div>
+    <div className="loader-container">
       <div className="loader" style={dynamicStyles}>Loading...</div>
 
       <style jsx>{`
+        .loader-container {
+          overflow: hidden;
+        }
+
         .loader,
         .loader:after {
           border-radius: 50%;

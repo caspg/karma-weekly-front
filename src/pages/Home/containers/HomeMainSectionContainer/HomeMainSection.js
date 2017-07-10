@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import colors from 'src/styles/colors';
 import LoginFormContainer from 'src/containers/LoginFormContainer';
 import Spinner from 'src/components/Spinner';
 
@@ -23,9 +24,10 @@ function HomeMainSection(props) {
 
       <div className="row center-xs">
         <div className="form-container">
+          <Spinner mainColor={colors.orange} radius="9em" />
 
           {props.isLoadingUser ?
-            <Spinner mainColor="#ffae00" radius="9em" /> :
+            <Spinner mainColor={colors.orange} radius="9em" /> :
             <LoginFormContainer />}
 
         </div>

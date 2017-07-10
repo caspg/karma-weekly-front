@@ -19,6 +19,7 @@ describe('Spinner component', () => {
         mainColor="#000"
         bgColor="#fff"
         radius="50em"
+        borderWidth="1em"
       />
     );
 

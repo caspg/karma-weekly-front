@@ -2,17 +2,19 @@
 
 exports[`Spinner component matches a snapshot with custom props 1`] = `
 <div
-  data-jsx={3940116607}
+  className="loader-container"
+  data-jsx={2137335714}
 >
   <div
     className="loader"
-    data-jsx={3940116607}
+    data-jsx={2137335714}
     style={
       Object {
-        "borderBottom": ".25rem solid #fff",
-        "borderLeft": ".25rem solid #000",
-        "borderRight": ".25rem solid #fff",
-        "borderTop": ".25rem solid #fff",
+        "borderBottom": "solid #fff",
+        "borderLeft": "solid #000",
+        "borderRight": "solid #fff",
+        "borderTop": "solid #000",
+        "borderWidth": "1em",
         "height": "50em",
         "width": "50em",
       }
@@ -21,25 +23,27 @@ exports[`Spinner component matches a snapshot with custom props 1`] = `
     Loading...
   </div>
   <_class
-    css=".loader[data-jsx=\\"3940116607\\"],.loader[data-jsx=\\"3940116607\\"]:after{border-radius:50%}.loader[data-jsx=\\"3940116607\\"]{margin:0 auto;font-size:10px;position:relative;-webkit-text-indent:-9999em;text-indent:-9999em;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);-webkit-animation:load8 1.1s infinite linear;-webkit-animation:load8datajsx3940116607 1.1s infinite linear;animation:load8datajsx3940116607 1.1s infinite linear}0%[data-jsx=\\"3940116607\\"]{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%[data-jsx=\\"3940116607\\"]{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}@-webkit-keyframes load8datajsx3940116607{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes load8datajsx3940116607{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}"
-    styleId={3940116607}
+    css=".loader-container[data-jsx=\\"2137335714\\"]{overflow:hidden}.loader[data-jsx=\\"2137335714\\"],.loader[data-jsx=\\"2137335714\\"]:after{border-radius:50%}.loader[data-jsx=\\"2137335714\\"]{margin:0 auto;position:relative;-webkit-text-indent:-9999em;text-indent:-9999em;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);-webkit-animation:load8 0.8s infinite linear;-webkit-animation:load8datajsx2137335714 0.8s infinite linear;animation:load8datajsx2137335714 0.8s infinite linear}0%[data-jsx=\\"2137335714\\"]{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%[data-jsx=\\"2137335714\\"]{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}@-webkit-keyframes load8datajsx2137335714{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes load8datajsx2137335714{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}"
+    styleId={2137335714}
   />
 </div>
 `;
 
 exports[`Spinner component matches a snapshot with default props 1`] = `
 <div
-  data-jsx={3940116607}
+  className="loader-container"
+  data-jsx={2137335714}
 >
   <div
     className="loader"
-    data-jsx={3940116607}
+    data-jsx={2137335714}
     style={
       Object {
-        "borderBottom": ".25rem solid #ddd",
-        "borderLeft": ".25rem solid #5dc0de",
-        "borderRight": ".25rem solid #ddd",
-        "borderTop": ".25rem solid #ddd",
+        "borderBottom": "solid #ddd",
+        "borderLeft": "solid #5dc0de",
+        "borderRight": "solid #ddd",
+        "borderTop": "solid #5dc0de",
+        "borderWidth": "0.25em",
         "height": "10em",
         "width": "10em",
       }
@@ -48,8 +52,8 @@ exports[`Spinner component matches a snapshot with default props 1`] = `
     Loading...
   </div>
   <_class
-    css=".loader[data-jsx=\\"3940116607\\"],.loader[data-jsx=\\"3940116607\\"]:after{border-radius:50%}.loader[data-jsx=\\"3940116607\\"]{margin:0 auto;font-size:10px;position:relative;-webkit-text-indent:-9999em;text-indent:-9999em;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);-webkit-animation:load8 1.1s infinite linear;-webkit-animation:load8datajsx3940116607 1.1s infinite linear;animation:load8datajsx3940116607 1.1s infinite linear}0%[data-jsx=\\"3940116607\\"]{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%[data-jsx=\\"3940116607\\"]{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}@-webkit-keyframes load8datajsx3940116607{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes load8datajsx3940116607{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}"
-    styleId={3940116607}
+    css=".loader-container[data-jsx=\\"2137335714\\"]{overflow:hidden}.loader[data-jsx=\\"2137335714\\"],.loader[data-jsx=\\"2137335714\\"]:after{border-radius:50%}.loader[data-jsx=\\"2137335714\\"]{margin:0 auto;position:relative;-webkit-text-indent:-9999em;text-indent:-9999em;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);-webkit-animation:load8 0.8s infinite linear;-webkit-animation:load8datajsx2137335714 0.8s infinite linear;animation:load8datajsx2137335714 0.8s infinite linear}0%[data-jsx=\\"2137335714\\"]{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%[data-jsx=\\"2137335714\\"]{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}@-webkit-keyframes load8datajsx2137335714{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes load8datajsx2137335714{0%{-webkit-transform:rotate(0deg);-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);-webkit-transform:rotate(360deg);-ms-transform:rotate(360deg);transform:rotate(360deg)}}"
+    styleId={2137335714}
   />
 </div>
 `;
