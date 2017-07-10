@@ -1,15 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import colors from 'src/styles/colors';
 import AppHead from 'src/components/AppHead';
 import Spinner from 'src/components/Spinner';
 
-MagicLoginView.propTypes = {
-  isValidatingToken: PropTypes.bool.isRequired,
-};
-
-function MagicLoginView(props) {
+function MagicLoginView() {
   return (
     <div>
       <AppHead title="Karma Weekly | Magic Login" />
@@ -26,8 +21,7 @@ function MagicLoginView(props) {
 
       <div className="row center-xs">
         <div className="message-container">
-          {props.isValidatingToken &&
-            <Spinner mainColor={colors.orange} radius="8em" />}
+          <Spinner mainColor={colors.orange} radius="8em" />
         </div>
       </div>
 

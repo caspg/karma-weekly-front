@@ -40,7 +40,7 @@ async function verifyJWT(submitVerifyJWT, token) {
   }
 
   try {
-    const { data } = await this.props.submitVerifyJWT(token);
+    const { data } = await submitVerifyJWT(token);
 
     if (data.verifyJWT.error || !data.verifyJWT.longLiveJwt) {
       return invalidTokenError();

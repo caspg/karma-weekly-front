@@ -21,7 +21,11 @@ function withFlashMessages(ComposedComponent) {
     }
 
     addFlashMessage = (message) => {
-      // TODO validate message object!
+      const { id, type, title, body } = message;
+      if (!id || !type || !title || !body) {
+        throw Error('flash message object does not have required properites.');
+      }
+
       const updatedMessages = globalFlashMessages.concat(message);
       this.updateMessages(updatedMessages);
     }

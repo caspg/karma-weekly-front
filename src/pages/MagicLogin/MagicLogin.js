@@ -62,7 +62,7 @@ class MagicLogin extends Component {
   }
 
   render() {
-    return <MagicLoginView isValidatingToken={this.state.isValidatingToken} />;
+    return <MagicLoginView />;
   }
 }
 
