@@ -17,7 +17,7 @@ describe('jwtService', () => {
 
   beforeEach(() => { jest.resetAllMocks(); });
 
-  const expectedTokenKey = 'karma_jwt';
+  const expectedTokenKey = 'karma_weekly_jwt';
   const jwToken = 'some-long-well-encrypted-token';
 
   test('saveInLocal - it sets item in the localStorage', () => {

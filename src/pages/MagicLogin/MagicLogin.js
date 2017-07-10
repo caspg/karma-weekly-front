@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'react-apollo';
+import Router from 'next/router';
 
+import jwtService from 'src/services/jwtService';
 import routes from 'src/config/routes';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
@@ -34,7 +36,7 @@ class MagicLogin extends Component {
     if (nextProps.isLoadingUser) return;
 
     if (nextProps.isUserLogged) {
-      this.props.url.replace(routes.home);
+      Router.replace(routes.home);
     }
 
     if (!nextProps.isUserLogged && nextState.isValidatingToken) {
@@ -43,32 +45,33 @@ class MagicLogin extends Component {
   }
 
   handleValidateToken = async () => {
-    const errorMessage = await this.verifyJWT();
+    const { errorMessage, longLiveJwt } = await this.verifyJWT();
 
     if (errorMessage) {
       this.setState({ isValidatingToken: false, errorMessage });
+      return;
     }
+
+    jwtService.saveInLocal(longLiveJwt);
+    Router.replace(routes.dashboard);
   }
 
-  /**
-   * Returns error message when JWT is not valid.
-   */
   verifyJWT = async () => {
     const token = this.props.url.query.m;
 
     if (!token) {
-      return 'Looks like url is malformed. Please make sure you\'ve clicked correct link in the email or go to the home page and submit your email address again.';
+      return { errorMessage: 'Looks like url is malformed. Please make sure you\'ve clicked correct link in the email or go to the home page and submit your email address again.' };
     }
 
     try {
       const { data } = await this.props.submitVerifyJWT(token);
       if (data.verifyJWT.error || !data.verifyJWT.longLiveJwt) {
-        return 'Your magic link is invalid. Probably it already expired. Please go to the home page and submit your email address again.';
+        return { errorMessage: 'Your magic link is invalid. Probably it already expired. Please go to the home page and submit your email address again.' };
       }
 
-      return null;
+      return { longLiveJwt: data.verifyJWT.longLiveJwt };
     } catch (e) {
-      return 'There was an internal server error. Please go to the home page and submit your email address again.';
+      return { errorMessage: 'There was an internal server error. Please go to the home page and submit your email address again.' };
     }
   }
 

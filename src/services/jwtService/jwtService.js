@@ -1,4 +1,4 @@
-const ITEM_KEY = 'karma_jwt';
+const ITEM_KEY = 'karma_weekly_jwt';
 
 /**
  * Save jwToken in localStorage.
