@@ -4,8 +4,17 @@ const typeDefs = `
     subreddits: [String]
   }
 
+  type EmailLoginResult {
+    error: String
+    status: Int!
+  }
+
   type Query {
     user: User
+  }
+
+  type Mutation {
+    emailLogin(email: String!): EmailLoginResult
   }
 `;
 
@@ -18,6 +27,13 @@ const user = {
 const resolvers = {
   Query: {
     user: () => user,
+  },
+  Mutation: {
+    emailLogin: () => new Promise((resolve) => {
+      setTimeout(() => (
+        resolve({ error: null, status: 200 })
+      ), 1000);
+    }),
   },
 };
 
