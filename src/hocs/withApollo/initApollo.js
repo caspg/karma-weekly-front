@@ -2,6 +2,7 @@ import { ApolloClient, createNetworkInterface } from 'react-apollo';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils';
 
+import jwtService from 'src/services/jwtService';
 import { typeDefs, resolvers } from './mockedSchema';
 
 function createMockedNetworkInterface() {
@@ -25,6 +26,18 @@ function createApolloClient() {
   const networkInterface = (process.env.MOCK_APOLLO === 'true') ?
     createMockedNetworkInterface() :
     makeNetworkInterface();
+
+  networkInterface.use([{
+    applyMiddleware: (req, next) => {
+      if (!req.options.headers) {
+        req.options.headers = {};
+      }
+
+      const token = jwtService.getFromLocal();
+      req.options.headers.authorization = token ? `Bearer ${token}` : null;
+      next();
+    },
+  }]);
 
   return new ApolloClient({
     ssrMode: false, // apollo will be running only in a browser
