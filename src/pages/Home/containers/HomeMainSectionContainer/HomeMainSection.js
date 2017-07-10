@@ -24,8 +24,6 @@ function HomeMainSection(props) {
 
       <div className="row center-xs">
         <div className="form-container">
-          <Spinner mainColor={colors.orange} radius="9em" />
-
           {props.isLoadingUser ?
             <Spinner mainColor={colors.orange} radius="9em" /> :
             <LoginFormContainer />}
