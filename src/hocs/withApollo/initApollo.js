@@ -19,13 +19,7 @@ function makeNetworkInterface() {
     throw Error('GRAPHQL_URI env variable must be provided');
   }
 
-  return createNetworkInterface({ uri: graphqlUri });
-}
-
-function createApolloClient() {
-  const networkInterface = (process.env.MOCK_APOLLO === 'true') ?
-    createMockedNetworkInterface() :
-    makeNetworkInterface();
+  const networkInterface = createNetworkInterface({ uri: graphqlUri });
 
   networkInterface.use([{
     applyMiddleware: (req, next) => {
@@ -38,6 +32,14 @@ function createApolloClient() {
       next();
     },
   }]);
+
+  return networkInterface;
+}
+
+function createApolloClient() {
+  const networkInterface = (process.env.MOCK_APOLLO === 'true') ?
+    createMockedNetworkInterface() :
+    makeNetworkInterface();
 
   return new ApolloClient({
     ssrMode: false, // apollo will be running only in a browser
