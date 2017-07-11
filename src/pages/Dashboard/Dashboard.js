@@ -18,7 +18,7 @@ function Dashboard(props) {
   return (
     <div>
       <AppHead title="Karma Weekly | Dashboard" />
-      <DashboardTobBar />
+      <DashboardTobBar isUserLogged={props.isUserLogged} />
 
       <div className="row center-xs">
         <div className="col-xs-10">
