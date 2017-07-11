@@ -1,12 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 import routes from 'src/config/routes';
-
-LoggedUserMessage.propTypes = {
-  isLoadingUser: PropTypes.bool.isRequired,
-};
 
 function LoggedUserMessage() {
   return (
@@ -18,7 +13,7 @@ function LoggedUserMessage() {
       <br />
 
       <Link href={routes.dashboard}>
-        Go to the dashboard
+        <a>Go to the dashboard</a>
       </Link>
 
       <style jsx>{`

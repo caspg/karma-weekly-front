@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import colors from 'src/styles/colors';
-import LoginFormContainer from 'src/containers/LoginFormContainer';
 import FlashMessagesList from 'src/containers/FlashMessagesList';
-import Spinner from 'src/components/Spinner';
+
+import ConditionalMainContent from './components/ConditionalMainContent';
 
 HomeMainSection.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
+  isUserLogged: PropTypes.bool.isRequired,
 };
 
 function HomeMainSection(props) {
@@ -28,9 +28,10 @@ function HomeMainSection(props) {
       <div className="row center-xs">
         <div className="form-container">
 
-          {props.isLoadingUser ?
-            <Spinner mainColor={colors.orange} radius="9em" /> :
-            <LoginFormContainer />}
+          <ConditionalMainContent
+            isLoadingUser={props.isLoadingUser}
+            isUserLogged={props.isUserLogged}
+          />
 
         </div>
       </div>
