@@ -8,7 +8,7 @@ function LoggedUserMessage() {
     <div className="callout success">
       <h5>Hello dear user</h5>
 
-      <p>You are already logged in. Go to the dashboard to edit your subscriptions.</p>
+      <p>You are already logged in. Go to the dashboard to manage your subscriptions.</p>
 
       <br />
 
