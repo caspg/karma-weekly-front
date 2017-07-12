@@ -21,15 +21,17 @@ function DashboardTobBar(props) {
       <div className="top-bar-right">
         <ul className="menu">
           <li className="menu-text">
-            <button className="button">elo</button>
 
-            <button
-              className="logout-button"
-              type="button"
-              onClick={props.onLogout}
-            >
-              Log out
-            </button>
+            {props.isUserLogged && (
+              <button
+                className="logout-button"
+                type="button"
+                onClick={props.onLogout}
+              >
+                Log out
+              </button>
+            )}
+
           </li>
         </ul>
       </div>
@@ -51,6 +53,11 @@ function DashboardTobBar(props) {
 
         .logout-button {
           cursor: pointer;
+          color: #424242;
+        }
+
+        .logout-button:hover {
+          color: black;
         }
       `}</style>
     </div>
