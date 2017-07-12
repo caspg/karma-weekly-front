@@ -1,19 +1,24 @@
+const REDDIT_URL = 'https://www.reddit.com';
+
 /**
  * Check if subreddit exists. Client side only service.
  * @param {string} subredditName
  * @returns {promise.<boolean>}
  */
-async function verifySubreddit(subredditName) {
+function verifySubreddit(subredditName) {
   if (typeof window === 'undefined') {
-    return Promise.resolve();
+    throw Error('redditService should be only used client side');
   }
 
-  require('reddit.js'); // eslint-disable-line global-require
   return new Promise((resolve) => {
-    reddit.about(subredditName).fetch( // eslint-disable-line no-undef
-      () => resolve(true),
-      () => resolve(false)
-    );
+    const url = `${REDDIT_URL}/r/${subredditName}/about.json`;
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = () => resolve(true);
+    xhr.onerror = () => resolve(false);
+
+    xhr.open('get', url, true);
+    xhr.send();
   });
 }
 
