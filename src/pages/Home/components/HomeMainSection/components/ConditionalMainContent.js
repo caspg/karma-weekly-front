@@ -5,8 +5,6 @@ import colors from 'src/styles/colors';
 import LoginFormContainer from 'src/containers/LoginFormContainer';
 import Spinner from 'src/components/Spinner';
 
-import LoggedUserMessage from './LoggedUserMessage';
-
 MainContent.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
   isUserLogged: PropTypes.bool.isRequired,
@@ -14,12 +12,8 @@ MainContent.propTypes = {
 
 
 function MainContent(props) {
-  if (props.isLoadingUser) {
+  if (props.isLoadingUser || props.isUserLogged) {
     return <Spinner mainColor={colors.orange} radius="9em" />;
-  }
-
-  if (props.isUserLogged) {
-    return <LoggedUserMessage />;
   }
 
   return <LoginFormContainer />;
