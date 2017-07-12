@@ -35,7 +35,7 @@ function DashboardLayout(props) {
       <style jsx>{`
         .content-container {
           margin: 0 auto;
-          margin-top: 100px;
+          margin-top: 50px;
         }
       `}</style>
     </div>

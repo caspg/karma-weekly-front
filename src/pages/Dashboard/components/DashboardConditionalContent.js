@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import colors from 'src/styles/colors';
 import Spinner from 'src/components/Spinner';
 
+import AddSubredditFormContainer from '../containers/AddSubredditFormContainer';
 import DashboardLoginForm from './DashboardLoginForm';
 
 DashboardConditionalContent.propTypes = {
@@ -20,7 +21,7 @@ function DashboardConditionalContent(props) {
     return <DashboardLoginForm />;
   }
 
-  return null;
+  return <AddSubredditFormContainer />;
 }
 
 export default DashboardConditionalContent;
