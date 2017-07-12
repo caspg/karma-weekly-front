@@ -7,6 +7,7 @@ import jwtService from 'src/services/jwtService';
 import routes from 'src/config/routes';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
+import withLoggedUserRedirect from 'src/hocs/withLoggedUserRedirect';
 import withFlashMessages from 'src/hocs/withFlashMessages';
 
 import withVerifyJWTMutation from './withVerifyJWTMutation';
@@ -34,10 +35,6 @@ class MagicLogin extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.isLoadingUser) return;
-
-    if (nextProps.isUserLogged) {
-      Router.replace(routes.dashboard);
-    }
 
     if (!nextProps.isUserLogged && nextState.isValidatingToken) {
       this.handleValidateToken();
@@ -69,6 +66,7 @@ class MagicLogin extends Component {
 export default compose(
   withApollo,
   withLoggedUser,
+  withLoggedUserRedirect,
   withVerifyJWTMutation,
   withFlashMessages,
 )(MagicLogin);
