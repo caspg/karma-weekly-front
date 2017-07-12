@@ -4,10 +4,8 @@ import { compose } from 'react-apollo';
 
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
-import AppHead from 'src/components/AppHead';
 
-import DashboardTobBar from './components/DashboardTobBar';
-import DashboardConditionalContent from './components/DashboardConditionalContent';
+import DashboardLayout from './components/DashboardLayout';
 
 Dashboard.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -15,29 +13,16 @@ Dashboard.propTypes = {
 };
 
 function Dashboard(props) {
+  function handleLogOut() {
+
+  }
+
   return (
-    <div>
-      <AppHead title="Karma Weekly | Dashboard" />
-      <DashboardTobBar isUserLogged={props.isUserLogged} />
-
-      <div className="row center-xs">
-        <div className="col-xs-10">
-          <div className="content-container">
-            <DashboardConditionalContent
-              isUserLogged={props.isUserLogged}
-              isLoadingUser={props.isLoadingUser}
-            />
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .content-container {
-          margin: 0 auto;
-          margin-top: 100px;
-        }
-      `}</style>
-    </div>
+    <DashboardLayout
+      isLoadingUser={props.isLoadingUser}
+      isUserLogged={props.isUserLogged}
+      onLogout={handleLogOut}
+    />
   );
 }
 

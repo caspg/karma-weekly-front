@@ -5,6 +5,7 @@ import colors from 'src/styles/colors';
 
 DashboardTobBar.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
+  onLogout: PropTypes.func.isRequired,
 };
 
 function DashboardTobBar(props) {
@@ -19,7 +20,17 @@ function DashboardTobBar(props) {
 
       <div className="top-bar-right">
         <ul className="menu">
-          <li className="menu-text">Log out</li>
+          <li className="menu-text">
+            <button className="button">elo</button>
+
+            <button
+              className="logout-button"
+              type="button"
+              onClick={props.onLogout}
+            >
+              Log out
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -36,6 +47,10 @@ function DashboardTobBar(props) {
 
         .site-title {
           font-size: 1.5em;
+        }
+
+        .logout-button {
+          cursor: pointer;
         }
       `}</style>
     </div>
