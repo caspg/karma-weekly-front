@@ -7,15 +7,21 @@ const REDDIT_URL = 'https://www.reddit.com';
  */
 function verifySubreddit(subredditName) {
   if (typeof window === 'undefined') {
-    throw Error('redditService should be only used client side');
+    throw Error('redditService should be used only client side');
   }
 
   return new Promise((resolve) => {
     const url = `${REDDIT_URL}/r/${subredditName}/about.json`;
     const xhr = new XMLHttpRequest();
 
-    xhr.onload = () => resolve(true);
-    xhr.onerror = () => resolve(false);
+    xhr.onerror = () => { console.log('eerrererer'); resolve(false) };
+    xhr.onload = () => {
+      if (xhr.status !== 200) {
+        resolve(false);
+      }
+
+      resolve(true);
+    };
 
     xhr.open('get', url, true);
     xhr.send();
