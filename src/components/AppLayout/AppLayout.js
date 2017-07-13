@@ -2,6 +2,8 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import AppHead from 'src/components/AppHead';
 
+import FlashMessagesList from 'src/containers/FlashMessagesList';
+
 AppLayout.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   children: PropTypes.oneOfType(
@@ -19,7 +21,21 @@ function AppLayout(props) {
 
       <div className="row sections-container">
         <div className="col-xs-12 col-md-4">
-          {childrenArray[0]}
+          <div className="main-section-container">
+            <FlashMessagesList />
+
+            <h1 className="text-center main-text">
+              <strong>Karma Weekly</strong>
+            </h1>
+
+            <div className="row center-xs">
+              <p className="intro-text">
+                Receive weekly top stories from your favourit subreddits. Never miss it again.
+              </p>
+            </div>
+
+            {childrenArray[0]}
+          </div>
         </div>
 
         <div className="col-xs-12 col-md-8">
@@ -30,6 +46,20 @@ function AppLayout(props) {
       <style jsx>{`
         .sections-container {
           height: 100vh;
+        }
+
+        .main-section-container {
+          maring: 0 40px;
+        }
+
+        .main-text {
+          margin-top: 100px;
+        }
+
+        .intro-text {
+          max-width: 500px;
+          text-align: left;
+          font-size: 1.2em;
         }
       `}</style>
     </div>
