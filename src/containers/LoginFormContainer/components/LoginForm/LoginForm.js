@@ -26,26 +26,26 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       email: '',
-      validationError: null,
       isSending: false,
       isLoginSuccess: false,
-      isServerError: false,
+      error: null,
     };
   }
 
   handleEmailChange = (event) => {
-    this.setState({ email: event.target.value, validationError: null });
+    this.setState({ email: event.target.value, error: null });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ isServerError: false });
+    this.setState({ error: null });
 
     const { email } = this.state;
     const emailError = LoginForm.validateEmail(email);
 
     if (emailError) {
-      this.setState({ validationError: emailError });
+      const error = { body: emailError };
+      this.setState({ error });
       return;
     }
 
@@ -56,7 +56,13 @@ class LoginForm extends Component {
     this.setState({ isSending: true });
 
     const handleSuccess = () => { this.setState({ isLoginSuccess: true, isSending: false }); };
-    const handleError = () => { this.setState({ isSending: false, isServerError: true }); };
+    const handleError = () => {
+      const error = {
+        title: 'There was an internal server error.',
+        body: 'Please try again later.',
+      };
+      this.setState({ isSending: false, error });
+    };
 
     this.props.submitLogin(this.state.email)
       .then(handleSuccess)
@@ -68,11 +74,10 @@ class LoginForm extends Component {
       <LoginFormContent
         onEamilChange={this.handleEmailChange}
         onSubmit={this.handleSubmit}
-        validationError={this.state.validationError}
         isSending={this.state.isSending}
         isLoginSuccess={this.state.isLoginSuccess}
-        isServerError={this.state.isServerError}
         emailValue={this.state.email}
+        error={this.state.error}
       />
     );
   }

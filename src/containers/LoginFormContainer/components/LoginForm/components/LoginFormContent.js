@@ -1,37 +1,37 @@
 import React from 'react';
-import PropTpyes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import colors from 'src/styles/colors';
 
+import Callout from 'src/components/Callout';
 import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
-import ValidationErrorMessage from './ValidationErrorMessage';
 import LoginSuccessMessage from './LoginSuccessMessage';
-import LoginErrorMessage from './LoginErrorMessage';
 
 LoginFormContent.propTypes = {
-  onEamilChange: PropTpyes.func.isRequired,
-  onSubmit: PropTpyes.func.isRequired,
-  isSending: PropTpyes.bool.isRequired,
-  isLoginSuccess: PropTpyes.bool.isRequired,
-  isServerError: PropTpyes.bool.isRequired,
-  validationError: PropTpyes.string,
-  emailValue: PropTpyes.string,
+  onEamilChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isSending: PropTypes.bool.isRequired,
+  isLoginSuccess: PropTypes.bool.isRequired,
+  emailValue: PropTypes.string,
+  error: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string.isRequired,
+  }),
 };
 
 LoginFormContent.defaultProps = {
-  validationError: null,
+  error: null,
   emailValue: '',
 };
 
 function LoginFormContent(props) {
-  const hasError = !!props.validationError;
+  const hasError = !!props.error;
 
   return (
     <div className="form-container">
       {props.isLoginSuccess && <LoginSuccessMessage />}
-      {props.isServerError && <LoginErrorMessage />}
-      {hasError && <ValidationErrorMessage validationError={props.validationError} />}
+      {hasError && <Callout {...props.error} type="alert" />}
 
       <form onSubmit={props.onSubmit}>
         <input
