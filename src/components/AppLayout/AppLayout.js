@@ -38,7 +38,7 @@ function AppLayout(props) {
           </div>
         </div>
 
-        <div className="col-xs-12 col-md-8">
+        <div className="col-xs-12 col-md-8 secondary-section-container">
           {childrenArray[1]}
         </div>
       </div>
@@ -60,6 +60,10 @@ function AppLayout(props) {
           max-width: 500px;
           text-align: left;
           font-size: 1.2em;
+        }
+
+        .secondary-section-container {
+          background: #ddd;
         }
       `}</style>
     </div>

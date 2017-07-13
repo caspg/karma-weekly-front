@@ -5,10 +5,6 @@ function HomeImageSection() {
     <div className="container">
 
       <style jsx>{`
-        .container {
-          background: #ddd;
-          height: 100%;
-        }
       `}</style>
     </div>
   );

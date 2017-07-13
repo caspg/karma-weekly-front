@@ -1,39 +1,43 @@
 import React from 'react';
 
 import colors from 'src/styles/colors';
-import AppHead from 'src/components/AppHead';
+import AppLayout from 'src/components/AppLayout';
 import Spinner from 'src/components/Spinner';
 
 function MagicLoginView() {
   return (
     <div>
-      <AppHead title="Karma Weekly | Magic Login" />
+      <AppLayout pageTitle="Karma Weekly | Magic Login">
+        <div />
 
-      <div className="row center-xs">
-        <div className="col-xs-12">
-          <h1><strong>Karma Weekly</strong></h1>
+        <div className="magic-content">
+          <div className="row center-xs">
+            <div className="col-xs-12">
+              <h2>Magic login in progress</h2>
+            </div>
+          </div>
+
+          <div className="row center-xs">
+            <div className="message-container">
+              <Spinner mainColor={colors.orange} radius="8em" />
+            </div>
+          </div>
         </div>
 
-        <div className="col-xs-12">
-          <h2>Magic login in progress</h2>
-        </div>
-      </div>
-
-      <div className="row center-xs">
-        <div className="message-container">
-          <Spinner mainColor={colors.orange} radius="8em" />
-        </div>
-      </div>
+      </AppLayout>
 
       <style jsx>{`
-         h1 {
-           margin-top: 100px;
-         }
+        .magic-content {
+          margin: 0 auto;
+          margin-top: 100px;
+          max-width: 600px;
 
-         .message-container {
-           max-width: 600px;
-           margin-top: 50px;
-         }
+          padding: 50px 0;
+        }
+
+        .message-container {
+          margin-top: 50px;
+        }
       `}</style>
     </div>
   );
