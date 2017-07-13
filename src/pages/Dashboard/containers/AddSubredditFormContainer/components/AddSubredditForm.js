@@ -19,7 +19,7 @@ AddSubredditForm.defaultProps = {
 function AddSubredditForm(props) {
   return (
     <div>
-      <Callout body={props.error} />
+      <Callout type="alert" body={props.error} />
 
       <form onSubmit={props.onSubmit}>
         <div className="input-group">

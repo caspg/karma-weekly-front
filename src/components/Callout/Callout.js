@@ -22,8 +22,10 @@ function Callout(props) {
   return (
     <div>
       <div className={`callout ${props.type}`}>
-        <h5>{props.title}</h5>
-        <p dangerouslySetInnerHTML={{ __html: props.body }} />
+        <div style={{ marginRight: props.onCloseClick ? 30 : '' }}>
+          <h5>{props.title}</h5>
+          <p dangerouslySetInnerHTML={{ __html: props.body }} />
+        </div>
 
         {props.onCloseClick && (
           <button

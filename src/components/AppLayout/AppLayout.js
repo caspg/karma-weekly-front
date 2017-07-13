@@ -57,8 +57,6 @@ function AppLayout(props) {
         }
 
         .intro-text {
-          max-width: 500px;
-          text-align: left;
           font-size: 1.2em;
         }
 
