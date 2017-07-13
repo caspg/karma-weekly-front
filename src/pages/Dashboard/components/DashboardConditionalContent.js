@@ -5,7 +5,6 @@ import colors from 'src/styles/colors';
 import Spinner from 'src/components/Spinner';
 
 import AddSubredditFormContainer from '../containers/AddSubredditFormContainer';
-import DashboardLoginForm from './DashboardLoginForm';
 
 DashboardConditionalContent.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -13,12 +12,8 @@ DashboardConditionalContent.propTypes = {
 };
 
 function DashboardConditionalContent(props) {
-  if (props.isLoadingUser) {
+  if (props.isLoadingUser || !props.isUserLogged) {
     return <Spinner mainColor={colors.orange} radius="9em" />;
-  }
-
-  if (!props.isUserLogged) {
-    return <DashboardLoginForm />;
   }
 
   return <AddSubredditFormContainer />;

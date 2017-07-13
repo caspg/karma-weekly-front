@@ -32,6 +32,7 @@ class Dashboard extends Component {
         id: Date.now(),
         type: 'alert',
         body: 'You need to login to manage your subscriptions.',
+        code: 'dashboard-unlogged-user',
       };
 
       this.setState({ isValidatingUser: false }, () => {

@@ -21,13 +21,17 @@ function withFlashMessages(ComposedComponent) {
     }
 
     addFlashMessage = (message) => {
-      const { id, type, body } = message;
-      if (!id || !type || !body) {
-        throw Error('flash message object does not have required properites.');
-      }
+      ['id', 'type', 'body', 'code'].forEach((property) => {
+        if (!message[property]) {
+          console.log(property)
+          throw Error(`flash message object does not have required propert: "${property}".`);
+        }
+      });
 
-      const updatedMessages = globalFlashMessages.concat(message);
-      this.updateMessages(updatedMessages);
+      if (!globalFlashMessages.find(m => m.code === message.code)) {
+        const updatedMessages = globalFlashMessages.concat(message);
+        this.updateMessages(updatedMessages);
+      }
     }
 
     removeFlashMessage = (messageId) => {

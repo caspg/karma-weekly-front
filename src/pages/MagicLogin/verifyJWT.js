@@ -1,11 +1,12 @@
-function createErrorMessageObject(title, body) {
-  return { id: Date.now(), type: 'alert', title, body };
+function createErrorMessageObject(title, body, code) {
+  return { id: Date.now(), type: 'alert', title, body, code };
 }
 
 function emptyTokenError() {
   const errorMessage = createErrorMessageObject(
       'Looks like magic link is malformed',
       'Please make sure you\'ve clicked correct link in the email or submit your email address again.',
+      'empty-token-error'
     );
 
   return { errorMessage };
@@ -14,7 +15,8 @@ function emptyTokenError() {
 function invalidTokenError() {
   const errorMessage = createErrorMessageObject(
     'Your magic link is invalid',
-    'Probably your magic link is already expired. Please submit your email address again.'
+    'Probably your magic link is already expired. Please submit your email address again.',
+    'invalid-token-error'
   );
 
   return { errorMessage };
@@ -23,7 +25,8 @@ function invalidTokenError() {
 function serverError() {
   const errorMessage = createErrorMessageObject(
     'There was an internal server error',
-    'Please submit your email address again.'
+    'Please submit your email address again.',
+    'token-validation-server-error'
   );
 
   return { errorMessage };
