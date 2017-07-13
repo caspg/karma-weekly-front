@@ -44,8 +44,8 @@ const resolvers = {
     user: () => user,
   },
   Mutation: {
-    emailLogin: () => Promise.reject(),
-    // emailLogin: () => timedOutResult({ error: null, status: 200 }),
+    // emailLogin: () => Promise.reject(),
+    emailLogin: () => timedOutResult({ error: null, status: 200 }),
     verifyJWT: () => timedOutResult({ error: null, status: 200, longLiveJwt: 'long-live-json-web-token' }),
   },
 };

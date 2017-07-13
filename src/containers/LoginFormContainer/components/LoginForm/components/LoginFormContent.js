@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import colors from 'src/styles/colors';
-
-import Callout from 'src/components/Callout';
 import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
-import LoginSuccessMessage from './LoginSuccessMessage';
+import LoginMessages from './LoginMessages';
 
 LoginFormContent.propTypes = {
   onEamilChange: PropTypes.func.isRequired,
@@ -30,8 +28,11 @@ function LoginFormContent(props) {
 
   return (
     <div className="form-container">
-      {props.isLoginSuccess && <LoginSuccessMessage />}
-      {hasError && <Callout {...props.error} type="alert" />}
+      <LoginMessages
+        isLoginSuccess={props.isLoginSuccess}
+        hasError={hasError}
+        error={props.error}
+      />
 
       <form onSubmit={props.onSubmit}>
         <input
