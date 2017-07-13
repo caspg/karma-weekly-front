@@ -51,11 +51,11 @@ let apolloClient = null;
 
 function initApollo() {
   // Reuse apollo client on clien-side
+  // apolloClient should be creted on each request during mocking.
 
-  // TODO: uncomment below code - it is commented for development only
-  // if (!apolloClient) {
-  apolloClient = createApolloClient();
-  // }
+  if (process.env.MOCK_APOLLO === 'true' || !apolloClient) {
+    apolloClient = createApolloClient();
+  }
 
   return apolloClient;
 }

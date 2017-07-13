@@ -26,8 +26,8 @@ const typeDefs = `
 `;
 
 const user = {
-  // email: 'some@email.com',
-  email: null,
+  email: 'some@email.com',
+  // email: null,
   subreddits: [],
 };
 

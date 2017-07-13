@@ -23,7 +23,6 @@ function withFlashMessages(ComposedComponent) {
     addFlashMessage = (message) => {
       ['id', 'type', 'body', 'code'].forEach((property) => {
         if (!message[property]) {
-          console.log(property)
           throw Error(`flash message object does not have required propert: "${property}".`);
         }
       });
