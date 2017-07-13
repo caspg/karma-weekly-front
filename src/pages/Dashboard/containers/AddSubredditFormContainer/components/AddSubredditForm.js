@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTpyes from 'prop-types';
 
-import ErrorCallout from 'src/components/ErrorCallout';
+import Callout from 'src/components/Callout';
 
 AddSubredditForm.propTypes = {
   onSubmit: PropTpyes.func.isRequired,
@@ -19,7 +19,7 @@ AddSubredditForm.defaultProps = {
 function AddSubredditForm(props) {
   return (
     <div>
-      <ErrorCallout body={props.error} />
+      <Callout body={props.error} />
 
       <form onSubmit={props.onSubmit}>
         <div className="input-group">

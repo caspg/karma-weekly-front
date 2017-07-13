@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTpyes from 'prop-types';
 
-ErrorCallout.propTypes = {
+Callout.propTypes = {
   title: PropTpyes.string,
   body: PropTpyes.string,
 };
 
-ErrorCallout.defaultProps = {
+Callout.defaultProps = {
   title: null,
   body: null,
 };
 
-function ErrorCallout(props) {
+function Callout(props) {
   if (!props.body && !props.title) {
     return null;
   }
@@ -33,4 +33,4 @@ function ErrorCallout(props) {
   );
 }
 
-export default ErrorCallout;
+export default Callout;

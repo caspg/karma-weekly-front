@@ -51,9 +51,11 @@ let apolloClient = null;
 
 function initApollo() {
   // Reuse apollo client on clien-side
-  if (!apolloClient) {
-    apolloClient = createApolloClient();
-  }
+
+  // TODO: uncomment below code - it is commented for development only
+  // if (!apolloClient) {
+  apolloClient = createApolloClient();
+  // }
 
   return apolloClient;
 }
