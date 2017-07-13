@@ -34,8 +34,6 @@ class MagicLogin extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.isUserLogged) return;
-
     if (nextProps.isLoadingUser) return;
 
     if (!nextProps.isUserLogged && this.state.isValidatingToken) {

@@ -49,7 +49,7 @@ function AppLayout(props) {
         }
 
         .main-section-container {
-          maring: 0 40px;
+          margin: 0 40px;
         }
 
         .main-text {

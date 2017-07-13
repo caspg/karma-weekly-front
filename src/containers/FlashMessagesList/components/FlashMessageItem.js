@@ -24,6 +24,16 @@ function FlashMessageItem(props) {
         type={props.type}
         onCloseClick={() => props.removeFlashMessage(props.id)}
       />
+
+      <style jsx>{`
+        li {
+          opacity: 0.7;
+        }
+
+        li:hover {
+          opacity: 0.9;
+        }
+      `}</style>
     </li>
   );
 }

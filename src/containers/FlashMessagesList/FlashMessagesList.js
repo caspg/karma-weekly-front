@@ -28,7 +28,11 @@ function FlashMessagesList(props) {
       <style jsx>{`
         ul {
           list-style: none;
-          margin-top: 50px;
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin-top: 10px;
+          margin-right: 10px;
         }
       `}</style>
     </ul>
