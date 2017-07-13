@@ -33,10 +33,10 @@ class MagicLogin extends Component {
     this.state = { isValidatingToken: true };
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.isLoadingUser) return;
 
-    if (!nextProps.isUserLogged && nextState.isValidatingToken) {
+    if (!nextProps.isUserLogged && this.state.isValidatingToken) {
       this.handleValidateToken();
     }
   }

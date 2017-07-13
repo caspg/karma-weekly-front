@@ -21,8 +21,8 @@ function withFlashMessages(ComposedComponent) {
     }
 
     addFlashMessage = (message) => {
-      const { id, type, title, body } = message;
-      if (!id || !type || !title || !body) {
+      const { id, type, body } = message;
+      if (!id || !type || !body) {
         throw Error('flash message object does not have required properites.');
       }
 
