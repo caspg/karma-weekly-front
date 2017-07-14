@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import redditService from 'src/services/redditService';
 
 import AddSubredditForm from './components/AddSubredditForm';
 
 class AddSubredditFormContainer extends Component {
+  static propTypes = {
+    onAddSubreddit: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +49,7 @@ class AddSubredditFormContainer extends Component {
         return;
       }
 
-      console.log(subreddit, ' is valid');
+      this.props.onAddSubreddit(subreddit);
     } catch (e) {
       this.internalError();
     }

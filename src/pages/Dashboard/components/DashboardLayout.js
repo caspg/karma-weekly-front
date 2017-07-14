@@ -12,7 +12,7 @@ DashboardLayout.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
   isUserLogged: PropTypes.bool.isRequired,
   onLogout: PropTypes.func.isRequired,
-  // onAddSubreddit: PropTypes.func.isRequired,
+  onAddSubreddit: PropTypes.func.isRequired,
 };
 
 function DashboardLayout(props) {
@@ -33,7 +33,11 @@ function DashboardLayout(props) {
 
                 {(props.isLoadingUser || !props.isUserLogged) ?
                   <Spinner mainColor={colors.orange} radius="9em" /> :
-                  <AddSubredditFormContainer />}
+                  (
+                    <AddSubredditFormContainer
+                      onAddSubreddit={props.onAddSubreddit}
+                    />
+                  )}
 
               </div>
             </div>
