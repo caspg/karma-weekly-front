@@ -6,10 +6,10 @@ import FlashMessagesList from 'src/containers/FlashMessagesList';
 
 AppLayout.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType(
+  children: PropTypes.oneOfType([
     PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node)
-  ).isRequired,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 function AppLayout(props) {

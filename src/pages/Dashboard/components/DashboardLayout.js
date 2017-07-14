@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import colors from 'src/styles/colors';
 import AppLayout from 'src/components/AppLayout';
+import Spinner from 'src/components/Spinner';
 
-import DashboardConditionalContent from './DashboardConditionalContent';
+import AddSubredditFormContainer from '../containers/AddSubredditFormContainer';
 
 DashboardLayout.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -20,10 +22,10 @@ function DashboardLayout(props) {
         <div className="row center-xs">
           <div className="col-xs-10">
             <div className="content-container">
-              <DashboardConditionalContent
-                isUserLogged={props.isUserLogged}
-                isLoadingUser={props.isLoadingUser}
-              />
+              {(props.isLoadingUser || !props.isUserLogged) ?
+                <Spinner mainColor={colors.orange} radius="9em" /> :
+                <AddSubredditFormContainer />}
+
             </div>
           </div>
         </div>
