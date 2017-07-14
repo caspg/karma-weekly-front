@@ -6,11 +6,13 @@ import AppLayout from 'src/components/AppLayout';
 import Spinner from 'src/components/Spinner';
 
 import AddSubredditFormContainer from '../containers/AddSubredditFormContainer';
+import DashboardNavbar from './DashboardNavbar';
 
 DashboardLayout.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
   isUserLogged: PropTypes.bool.isRequired,
-  // onLogout: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  // onAddSubreddit: PropTypes.func.isRequired,
 };
 
 function DashboardLayout(props) {
@@ -19,13 +21,21 @@ function DashboardLayout(props) {
       <AppLayout pageTitle="Karma Weekly | Dashboard">
         <div />
 
-        <div className="row center-xs">
-          <div className="col-xs-10">
-            <div className="content-container">
-              {(props.isLoadingUser || !props.isUserLogged) ?
-                <Spinner mainColor={colors.orange} radius="9em" /> :
-                <AddSubredditFormContainer />}
+        <div>
+          <DashboardNavbar
+            isUserLogged={props.isUserLogged}
+            onLogout={props.onLogout}
+          />
 
+          <div className="row center-xs">
+            <div className="col-xs-10">
+              <div className="content-container">
+
+                {(props.isLoadingUser || !props.isUserLogged) ?
+                  <Spinner mainColor={colors.orange} radius="9em" /> :
+                  <AddSubredditFormContainer />}
+
+              </div>
             </div>
           </div>
         </div>
@@ -34,7 +44,7 @@ function DashboardLayout(props) {
       <style jsx>{`
         .content-container {
           margin: 0 auto;
-          margin-top: 50px;
+          margin-top: 70px;
         }
       `}</style>
     </div>

@@ -42,12 +42,17 @@ class Dashboard extends Component {
     }
   }
 
+  handleSubreddit = (subreddit) => {
+    console.log('adding subreddit: ', subreddit);
+  }
+
   render() {
     return (
       <DashboardLayout
         isLoadingUser={this.props.isLoadingUser}
         isUserLogged={this.props.isUserLogged}
         onLogout={this.props.logout}
+        onAddSubreddit={this.handleSubreddit}
       />
     );
   }
