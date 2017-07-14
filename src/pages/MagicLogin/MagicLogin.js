@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'react-apollo';
+import { ApolloClient, compose, withApollo as withApolloClient } from 'react-apollo';
 import Router from 'next/router';
 
 import jwtService from 'src/services/jwtService';
@@ -26,6 +26,7 @@ class MagicLogin extends Component {
     }).isRequired,
     submitVerifyJWT: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired,
+    client: PropTypes.instanceOf(ApolloClient).isRequired,
   }
 
   constructor(props) {
@@ -54,6 +55,8 @@ class MagicLogin extends Component {
       }
 
       jwtService.saveInLocal(longLiveJwt);
+      // reset store and refetch all queries
+      this.props.client.resetStore();
       Router.replace(routes.dashboard);
     });
   }
@@ -65,6 +68,7 @@ class MagicLogin extends Component {
 
 export default compose(
   withApollo,
+  withApolloClient,
   withLoggedUser,
   withLoggedUserRedirect,
   withVerifyJWTMutation,
