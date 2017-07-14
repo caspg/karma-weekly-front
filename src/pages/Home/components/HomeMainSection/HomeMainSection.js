@@ -27,7 +27,7 @@ function HomeMainSection(props) {
           margin-top: 50px;
           width: 100%;
           max-width: 600px;
-          padding: 50px 50px;
+          padding: 50px 0;
         }
       `}</style>
     </div>

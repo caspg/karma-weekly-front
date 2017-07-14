@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ApolloClient, withApollo } from 'react-apollo';
-import Router from 'next/router';
 
-import routes from 'src/config/routes';
 import getComponentDisplayName from 'src/utils/getComponentDisplayName';
 import jwtService from 'src/services/jwtService';
 
@@ -19,7 +17,6 @@ function withLogout(ComposedComponent) {
 
     handleLogout = () => {
       jwtService.removeFromLocal();
-      Router.push(routes.home);
       this.props.client.resetStore();
     }
 

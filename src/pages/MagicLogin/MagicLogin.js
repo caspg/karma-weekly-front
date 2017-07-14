@@ -37,6 +37,10 @@ class MagicLogin extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoadingUser) return;
 
+    if (nextProps.isUserLogged) {
+      Router.replace(routes.dashboard);
+    }
+
     if (!nextProps.isUserLogged && this.state.isValidatingToken) {
       this.handleValidateToken();
     }
