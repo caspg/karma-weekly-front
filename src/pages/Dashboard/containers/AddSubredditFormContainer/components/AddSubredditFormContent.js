@@ -2,6 +2,7 @@ import React from 'react';
 import PropTpyes from 'prop-types';
 
 import Callout from 'src/components/Callout';
+import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
 AddSubredditFormContent.propTypes = {
   onSubmit: PropTpyes.func.isRequired,
@@ -32,7 +33,15 @@ function AddSubredditFormContent(props) {
           />
 
           <div className="input-group-button">
-            <input type="submit" className="input-button button" value="Add" />
+            <ButtonWithSpinner
+              type="submit"
+              className="button add-subreddit-button"
+              isLoading={props.isSubmitting}
+              customStyle={{ height: '2.5em', minWidth: 70 }}
+              spinnerColor="#fff"
+            >
+              Add
+            </ButtonWithSpinner>
           </div>
         </div>
       </form>
@@ -41,10 +50,6 @@ function AddSubredditFormContent(props) {
         .input-group-field {
           height: 2.5em;
           padding-left: 1.5rem;
-        }
-
-        .input-button {
-          height: 2.5em;
         }
       `}</style>
     </div>

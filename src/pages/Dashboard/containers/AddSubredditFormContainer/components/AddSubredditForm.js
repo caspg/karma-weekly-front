@@ -39,6 +39,8 @@ class AddSubredditForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    this.setState({ isSubmitting: true });
+
     const subreddit = this.state.subreddit.trim();
 
     // TODO: validate subreddit name client side
@@ -53,10 +55,11 @@ class AddSubredditForm extends Component {
         return;
       }
 
-      this.props.onAddSubreddit(subreddit);
-      this.setState({ subreddit: '' });
+      await this.props.onAddSubreddit(subreddit);
+      this.setState({ subreddit: '', isSubmitting: false });
     } catch (e) {
       this.internalError();
+      this.setState({ isSubmitting: false });
     }
   }
 

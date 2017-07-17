@@ -6,15 +6,20 @@ import Spinner from 'src/components/Spinner';
 
 ButtonWithSpinner.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool.isRequired,
   children: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
   type: PropTypes.string,
   className: PropTypes.string,
+  spinnerColor: PropTypes.string,
+  customStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 ButtonWithSpinner.defaultProps = {
   type: 'button',
   className: 'button',
+  disabled: false,
+  customStyle: {},
+  spinnerColor: '',
 };
 
 function ButtonWithSpinner(props) {
@@ -23,18 +28,20 @@ function ButtonWithSpinner(props) {
     fontSize: '1em',
   };
 
+  const spinnerColor = props.spinnerColor || colors.black;
+
   return (
     <button
       type={props.type}
       className={props.className}
-      style={buttonStyle}
-      disabled={props.disabled || props.isLoading}
+      style={Object.assign({}, buttonStyle, props.customStyle)}
+      disabled={props.disabled}
     >
       {
         !props.isLoading ?
           props.children :
           <Spinner
-            mainColor={colors.black}
+            mainColor={spinnerColor}
             bgColor="rgba(0,0,0,0)"
             borderWidth="0.1em"
             radius="1em"

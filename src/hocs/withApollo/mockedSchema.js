@@ -15,6 +15,11 @@ const typeDefs = `
     longLiveJwt: String
   }
 
+  type AddSubredditResult {
+    error: String
+    status: Int!
+  }
+
   type Query {
     user: User
   }
@@ -22,20 +27,21 @@ const typeDefs = `
   type Mutation {
     emailLogin(email: String!): EmailLoginResult
     verifyJWT(token: String!): VerifyJWTResult
+    addSubreddit(subreddit: String!): AddSubredditResult
   }
 `;
 
 const user = {
-  // email: 'some@email.com',
-  email: null,
+  email: 'some@email.com',
+  // email: null,
   subreddits: [],
 };
 
-function timedOutResult(result) {
+function timedOutResult(result, timeout = 1000) {
   return new Promise((resolve) => {
     setTimeout(() => (
       resolve(result)
-    ), 1000);
+    ), timeout);
   });
 }
 
@@ -46,6 +52,7 @@ const resolvers = {
   Mutation: {
     // emailLogin: () => Promise.reject(),
     emailLogin: () => timedOutResult({ error: null, status: 200 }),
+    addSubreddit: () => timedOutResult({ error: null, status: 200 }, 1000),
     verifyJWT: () => timedOutResult({ error: null, status: 200, longLiveJwt: 'long-live-json-web-token' }),
   },
 };
