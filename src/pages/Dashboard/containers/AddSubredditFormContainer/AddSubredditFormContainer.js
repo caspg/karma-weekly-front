@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
+import USER_SUBREDDITS_QUERY from 'src/graphql/queries/userSubreddits';
 import AddSubredditForm from './components/AddSubredditForm';
 
 class AddSubredditFormContainer extends Component {
@@ -44,7 +45,19 @@ const ADD_SUBREDDIT_MUTATION = gql`
 
 const withAddSubredditMutation = graphql(ADD_SUBREDDIT_MUTATION, {
   props: ({ mutate }) => ({
-    addSubreddit: subreddit => mutate({ variables: { subreddit } }),
+    addSubreddit: subreddit => mutate({
+      variables: { subreddit },
+      update: (store) => {
+        const data = store.readQuery({ query: USER_SUBREDDITS_QUERY });
+        const updatedData = Object.assign({}, data, {
+          user: Object.assign({}, data.user, {
+            subreddits: data.user.subreddits.concat(subreddit),
+          }),
+        });
+
+        store.writeQuery({ query: USER_SUBREDDITS_QUERY, data: updatedData });
+      },
+    }),
   }),
 });
 

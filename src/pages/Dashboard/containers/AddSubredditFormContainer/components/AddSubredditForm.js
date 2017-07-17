@@ -41,6 +41,10 @@ class AddSubredditForm extends Component {
     event.preventDefault();
     const subreddit = this.state.subreddit.trim();
 
+    // TODO: validate subreddit name client side
+    //   * subreddit can't be empty
+    //   * subreddit can't be already in the list
+
     try {
       const isValidSubreddit = await redditService.verifySubreddit(subreddit);
 
@@ -50,6 +54,7 @@ class AddSubredditForm extends Component {
       }
 
       this.props.onAddSubreddit(subreddit);
+      this.setState({ subreddit: '' });
     } catch (e) {
       this.internalError();
     }
