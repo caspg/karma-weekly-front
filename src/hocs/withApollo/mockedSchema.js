@@ -31,10 +31,12 @@ const typeDefs = `
   }
 `;
 
+const subreddits = ['startups', 'poland', 'keyobard', 'gis', 'macbook', 'netflix'];
+
 const user = {
   email: 'some@email.com',
   // email: null,
-  subreddits: [],
+  subreddits,
 };
 
 function timedOutResult(result, timeout = 1000) {

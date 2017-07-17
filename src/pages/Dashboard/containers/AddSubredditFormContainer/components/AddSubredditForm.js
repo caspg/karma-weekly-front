@@ -47,6 +47,8 @@ class AddSubredditForm extends Component {
       return `You have already subscribed to ${subreddit}.`;
     }
 
+    // TODO subreddits subsciprion must be maximum 10
+
     return null;
   }
 

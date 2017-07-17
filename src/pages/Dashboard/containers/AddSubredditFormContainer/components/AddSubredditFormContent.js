@@ -39,6 +39,7 @@ function AddSubredditFormContent(props) {
               isLoading={props.isSubmitting}
               customStyle={{ height: '2.5em', minWidth: 70 }}
               spinnerColor="#fff"
+              disabled={!!props.error}
             >
               Add
             </ButtonWithSpinner>

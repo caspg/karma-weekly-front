@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SubredditsTableRow from './SubredditsTableRow';
+
 SubredditsTable.propTypes = {
   subreddits: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
@@ -10,23 +12,9 @@ function SubredditsTable(props) {
     <table className="hover">
       <tbody>
         {props.subreddits.map(subreddit => (
-          <tr key={subreddit}>
-            <td className="subreddit-cell">
-              {subreddit}
-            </td>
-          </tr>
+          <SubredditsTableRow key={subreddit} subreddit={subreddit} />
         ))}
       </tbody>
-
-      <style jsx>{`
-        table {
-          text-align: left;
-        }
-
-        .subreddit-cell {
-          padding-left: 1.5rem;
-        }
-      `}</style>
     </table>
   );
 }

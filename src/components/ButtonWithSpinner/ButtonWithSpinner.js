@@ -12,6 +12,7 @@ ButtonWithSpinner.propTypes = {
   className: PropTypes.string,
   spinnerColor: PropTypes.string,
   customStyle: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  onClick: PropTypes.func,
 };
 
 ButtonWithSpinner.defaultProps = {
@@ -20,6 +21,7 @@ ButtonWithSpinner.defaultProps = {
   disabled: false,
   customStyle: {},
   spinnerColor: '',
+  onClick: () => {},
 };
 
 function ButtonWithSpinner(props) {
@@ -36,6 +38,7 @@ function ButtonWithSpinner(props) {
       className={props.className}
       style={Object.assign({}, buttonStyle, props.customStyle)}
       disabled={props.disabled || props.isLoading}
+      onClick={props.onClick}
     >
       {
         !props.isLoading ?
