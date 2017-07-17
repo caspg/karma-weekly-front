@@ -20,7 +20,7 @@ class AddSubredditForm extends Component {
   }
 
   setError = (msg) => {
-    this.setState({ error: msg });
+    this.setState({ error: msg, isSubmitting: false });
   }
 
   handleChange = (event) => {
@@ -59,7 +59,6 @@ class AddSubredditForm extends Component {
       this.setState({ subreddit: '', isSubmitting: false });
     } catch (e) {
       this.internalError();
-      this.setState({ isSubmitting: false });
     }
   }
 

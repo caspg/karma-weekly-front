@@ -35,7 +35,7 @@ function ButtonWithSpinner(props) {
       type={props.type}
       className={props.className}
       style={Object.assign({}, buttonStyle, props.customStyle)}
-      disabled={props.disabled}
+      disabled={props.disabled || props.isLoading}
     >
       {
         !props.isLoading ?
