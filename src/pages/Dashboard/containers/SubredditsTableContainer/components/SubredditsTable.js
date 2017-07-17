@@ -24,7 +24,7 @@ function SubredditsTable(props) {
         }
 
         .subreddit-cell {
-          padding-left: 50px;
+          padding-left: 1.5rem;
         }
       `}</style>
     </table>

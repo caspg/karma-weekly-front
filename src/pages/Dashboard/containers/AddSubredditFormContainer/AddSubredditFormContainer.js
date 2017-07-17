@@ -1,71 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import redditService from 'src/services/redditService';
+import { gql, graphql } from 'react-apollo';
 
 import AddSubredditForm from './components/AddSubredditForm';
 
 class AddSubredditFormContainer extends Component {
   static propTypes = {
-    onAddSubreddit: PropTypes.func.isRequired,
+    addSubreddit: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      subreddit: '',
-      error: undefined,
-      isSubmitting: false,
-    };
-  }
-
-  setError = (msg) => {
-    this.setState({ error: msg });
-  }
-
-  handleChange = (event) => {
-    this.setState({ subreddit: event.target.value });
-  }
-
-  validationError = (subreddit) => {
-    const msg = `<strong>r/${subreddit}</strong> does not exist. Please check the name and submit again.`;
-    this.setError(msg);
-  }
-
-  internalError = () => {
-    const msg = 'There was some internal error. Please try again later.';
-    this.setError(msg);
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    const subreddit = this.state.subreddit.trim();
+  handleAddSubreddit = async (subreddit) => {
+    // TODO: handle errors
+    // TODO maybe move this to AddSubredditFormContainer (??)
 
     try {
-      const isValidSubreddit = await redditService.verifySubreddit(subreddit);
+      const { data } = await this.props.addSubreddit(subreddit);
 
-      if (!isValidSubreddit) {
-        this.validationError(subreddit);
-        return;
+      if (!data || data.addSubreddit.status !== 200) {
+        console.log('There was an error: ', data);
+      } else {
+        console.log('success');
       }
-
-      this.props.onAddSubreddit(subreddit);
     } catch (e) {
-      this.internalError();
+      console.log('Server error: ', e);
     }
   }
 
   render() {
     return (
-      <AddSubredditForm
-        onSubmit={this.handleSubmit}
-        onChange={this.handleChange}
-        subreddit={this.state.subreddit}
-        isSubmitting={this.state.isSubmitting}
-        error={this.state.error}
-      />
+      <AddSubredditForm onAddSubreddit={this.handleAddSubreddit} />
     );
   }
 }
 
-export default AddSubredditFormContainer;
+const ADD_SUBREDDIT_MUTATION = gql`
+  mutation addSubreddit($subreddit: String!) {
+    addSubreddit(subreddit: $subreddit) {
+      error
+      status
+    }
+  }
+`;
+
+const withAddSubredditMutation = graphql(ADD_SUBREDDIT_MUTATION, {
+  props: ({ mutate }) => ({
+    addSubreddit: subreddit => mutate({ variables: { subreddit } }),
+  }),
+});
+
+export default withAddSubredditMutation(AddSubredditFormContainer);

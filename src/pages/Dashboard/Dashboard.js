@@ -9,7 +9,6 @@ import withLoggedUser from 'src/hocs/withLoggedUser';
 import withLogout from 'src/hocs/withLogout';
 import withFlashMessages from 'src/hocs/withFlashMessages';
 
-import withAddSubredditMutation from './graphql/withAddSubredditMutation';
 import DashboardLayout from './DashboardLayout';
 
 class Dashboard extends Component {
@@ -18,7 +17,6 @@ class Dashboard extends Component {
     isUserLogged: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired,
-    addSubreddit: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -44,30 +42,12 @@ class Dashboard extends Component {
     }
   }
 
-  handleAddSubreddit = async (subreddit) => {
-    // TODO: handle errors
-    // TODO maybe move this to AddSubredditFormContainer (??)
-
-    try {
-      const { data } = await this.props.addSubreddit(subreddit);
-
-      if (!data || data.addSubreddit.status !== 200) {
-        console.log('There was an error: ', data);
-      } else {
-        console.log('success');
-      }
-    } catch (e) {
-      console.log('Server error: ', e);
-    }
-  }
-
   render() {
     return (
       <DashboardLayout
         isLoadingUser={this.props.isLoadingUser}
         isUserLogged={this.props.isUserLogged}
         onLogout={this.props.logout}
-        onAddSubreddit={this.handleAddSubreddit}
       />
     );
   }
@@ -78,5 +58,4 @@ export default compose(
   withLoggedUser,
   withLogout,
   withFlashMessages,
-  withAddSubredditMutation,
 )(Dashboard);

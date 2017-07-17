@@ -1,53 +1,71 @@
-import React from 'react';
-import PropTpyes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import Callout from 'src/components/Callout';
+import redditService from 'src/services/redditService';
 
-AddSubredditForm.propTypes = {
-  onSubmit: PropTpyes.func.isRequired,
-  onChange: PropTpyes.func.isRequired,
-  isSubmitting: PropTpyes.bool.isRequired,
-  subreddit: PropTpyes.string,
-  error: PropTpyes.string,
-};
+import AddSubredditFormContent from './AddSubredditFormContent';
 
-AddSubredditForm.defaultProps = {
-  subreddit: '',
-  error: '',
-};
+class AddSubredditForm extends Component {
+  static propTypes = {
+    onAddSubreddit: PropTypes.func.isRequired,
+  }
 
-function AddSubredditForm(props) {
-  return (
-    <div>
-      <Callout type="alert" body={props.error} />
+  constructor(props) {
+    super(props);
+    this.state = {
+      subreddit: '',
+      error: undefined,
+      isSubmitting: false,
+    };
+  }
 
-      <form onSubmit={props.onSubmit}>
-        <div className="input-group">
-          <input
-            type="text"
-            className="input-group-field"
-            placeholder="Type subreddit name..."
-            onChange={props.onChange}
-            value={props.subreddit}
-          />
+  setError = (msg) => {
+    this.setState({ error: msg });
+  }
 
-          <div className="input-group-button">
-            <input type="submit" className="input-button button" value="Add" />
-          </div>
-        </div>
-      </form>
+  handleChange = (event) => {
+    this.setState({ subreddit: event.target.value });
+  }
 
-      <style jsx>{`
-        .input-group-field {
-          height: 2.5em;
-        }
+  validationError = (subreddit) => {
+    const msg = `<strong>r/${subreddit}</strong> does not exist. Please check the name and submit again.`;
+    this.setError(msg);
+  }
 
-        .input-button {
-          height: 2.5em;
-        }
-      `}</style>
-    </div>
-  );
+  internalError = () => {
+    const msg = 'There was some internal error. Please try again later.';
+    this.setError(msg);
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const subreddit = this.state.subreddit.trim();
+
+    try {
+      const isValidSubreddit = await redditService.verifySubreddit(subreddit);
+
+      if (!isValidSubreddit) {
+        this.validationError(subreddit);
+        return;
+      }
+
+      this.props.onAddSubreddit(subreddit);
+    } catch (e) {
+      this.internalError();
+    }
+  }
+
+  render() {
+    return (
+      <AddSubredditFormContent
+        onSubmit={this.handleSubmit}
+        onChange={this.handleChange}
+        subreddit={this.state.subreddit}
+        isSubmitting={this.state.isSubmitting}
+        error={this.state.error}
+      />
+    );
+  }
 }
 
 export default AddSubredditForm;
