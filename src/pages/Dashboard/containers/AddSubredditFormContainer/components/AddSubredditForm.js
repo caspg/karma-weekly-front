@@ -10,6 +10,14 @@ class AddSubredditForm extends Component {
     onAddSubreddit: PropTypes.func.isRequired,
   }
 
+  static validateSubreddit = (subreddit) => {
+    if (!subreddit) {
+      return 'Subreddit name can\'t be empty.';
+    }
+
+    return null;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +35,7 @@ class AddSubredditForm extends Component {
     this.setState({ subreddit: event.target.value });
   }
 
-  validationError = (subreddit) => {
+  subredditVerificationError = (subreddit) => {
     const msg = `<strong>r/${subreddit}</strong> does not exist. Please check the name and submit again.`;
     this.setError(msg);
   }
@@ -42,16 +50,21 @@ class AddSubredditForm extends Component {
     this.setState({ isSubmitting: true });
 
     const subreddit = this.state.subreddit.trim();
+    const validationError = AddSubredditForm.validateSubreddit(subreddit);
+
+    if (validationError) {
+      this.setError(validationError);
+      return;
+    }
 
     // TODO: validate subreddit name client side
-    //   * subreddit can't be empty
     //   * subreddit can't be already in the list
 
     try {
       const isValidSubreddit = await redditService.verifySubreddit(subreddit);
 
       if (!isValidSubreddit) {
-        this.validationError(subreddit);
+        this.subredditVerificationError(subreddit);
         return;
       }
 
