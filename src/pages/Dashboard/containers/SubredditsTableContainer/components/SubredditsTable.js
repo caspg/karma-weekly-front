@@ -7,10 +7,27 @@ SubredditsTable.propTypes = {
 
 function SubredditsTable(props) {
   return (
-    <div>
-      {props.subreddits.map(subreddit =>
-        <p key={subreddit}>{subreddit}</p>)}
-    </div>
+    <table className="hover">
+      <tbody>
+        {props.subreddits.map(subreddit => (
+          <tr key={subreddit}>
+            <td className="subreddit-cell">
+              {subreddit}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+
+      <style jsx>{`
+        table {
+          text-align: left;
+        }
+
+        .subreddit-cell {
+          padding-left: 50px;
+        }
+      `}</style>
+    </table>
   );
 }
 
