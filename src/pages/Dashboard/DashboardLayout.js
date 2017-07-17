@@ -6,7 +6,7 @@ import AppLayout from 'src/components/AppLayout';
 import Spinner from 'src/components/Spinner';
 
 import AddSubredditFormContainer from './containers/AddSubredditFormContainer';
-import SubredditListContainer from './containers/SubredditListContainer';
+import SubredditsTableContainer from './containers/SubredditsTableContainer';
 import DashboardNavbar from './components/DashboardNavbar';
 
 DashboardLayout.propTypes = {
@@ -40,7 +40,7 @@ function DashboardLayout(props) {
                         onAddSubreddit={props.onAddSubreddit}
                       />
 
-                      <SubredditListContainer />
+                      <SubredditsTableContainer />
                     </div>
                   )}
 

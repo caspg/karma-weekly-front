@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-SubredditList.propTypes = {
+SubredditsTable.propTypes = {
   subreddits: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-function SubredditList(props) {
+function SubredditsTable(props) {
   return (
     <div>
       {props.subreddits.map(subreddit =>
@@ -14,4 +14,4 @@ function SubredditList(props) {
   );
 }
 
-export default SubredditList;
+export default SubredditsTable;

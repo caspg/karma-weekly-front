@@ -2,9 +2,9 @@ import React from 'react';
 import { gql, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import SubredditList from './components/SubredditList';
+import SubredditsTable from './components/SubredditsTable';
 
-SubredditListContainer.propTypes = {
+SubredditsTableContainer.propTypes = {
   data: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     user: PropTypes.shape({
@@ -13,12 +13,12 @@ SubredditListContainer.propTypes = {
   }).isRequired,
 };
 
-function SubredditListContainer(props) {
+function SubredditsTableContainer(props) {
   // TODO: display loader when data are loading
   const subreddits = props.data.loading ? [] : props.data.user.subreddits;
 
   return (
-    <SubredditList subreddits={subreddits} />
+    <SubredditsTable subreddits={subreddits} />
   );
 }
 
@@ -32,4 +32,4 @@ const USER_SUBREDDITS_QUERY = gql`
 
 const withUserSubredditsQuery = graphql(USER_SUBREDDITS_QUERY);
 
-export default withUserSubredditsQuery(SubredditListContainer);
+export default withUserSubredditsQuery(SubredditsTableContainer);
