@@ -5,6 +5,7 @@ import SubredditsTableRow from './SubredditsTableRow';
 
 SubredditsTable.propTypes = {
   subreddits: PropTypes.arrayOf(PropTypes.string).isRequired,
+  removeSubreddit: PropTypes.func.isRequired,
 };
 
 function SubredditsTable(props) {
@@ -12,7 +13,11 @@ function SubredditsTable(props) {
     <table className="hover">
       <tbody>
         {props.subreddits.map(subreddit => (
-          <SubredditsTableRow key={subreddit} subreddit={subreddit} />
+          <SubredditsTableRow
+            key={subreddit}
+            subreddit={subreddit}
+            removeSubreddit={props.removeSubreddit}
+          />
         ))}
       </tbody>
     </table>

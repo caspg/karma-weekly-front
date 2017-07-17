@@ -6,6 +6,7 @@ import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 class SubredditsTableRow extends Component {
   static propTypes = {
     subreddit: PropTypes.string.isRequired,
+    removeSubreddit: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -22,6 +23,13 @@ class SubredditsTableRow extends Component {
 
   handleMouseLeave = () => {
     this.setState({ isOnHover: false });
+  }
+
+  handleRemoveSubreddit = () => {
+    this.setState({ isRemoving: true });
+
+    // TODO handle errors
+    this.props.removeSubreddit(this.props.subreddit);
   }
 
   render() {
@@ -45,7 +53,7 @@ class SubredditsTableRow extends Component {
             className="button secondary"
             isLoading={this.state.isRemoving}
             customStyle={buttonStyle}
-            onClick={() => { this.setState({ isRemoving: true }); }}
+            onClick={this.handleRemoveSubreddit}
             spinnerColor="#fff"
           >
             &times;

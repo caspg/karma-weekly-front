@@ -20,6 +20,11 @@ const typeDefs = `
     status: Int!
   }
 
+  type RemoveSubredditResult {
+    error: String
+    status: Int!
+  }
+
   type Query {
     user: User
   }
@@ -28,6 +33,7 @@ const typeDefs = `
     emailLogin(email: String!): EmailLoginResult
     verifyJWT(token: String!): VerifyJWTResult
     addSubreddit(subreddit: String!): AddSubredditResult
+    removeSubreddit(subreddit: String!): RemoveSubredditResult
   }
 `;
 
@@ -55,6 +61,7 @@ const resolvers = {
     // emailLogin: () => Promise.reject(),
     emailLogin: () => timedOutResult({ error: null, status: 200 }),
     addSubreddit: () => timedOutResult({ error: null, status: 200 }, 1000),
+    removeSubreddit: () => timedOutResult({ error: null, status: 200 }, 1000),
     verifyJWT: () => timedOutResult({ error: null, status: 200, longLiveJwt: 'long-live-json-web-token' }),
   },
 };
