@@ -5,8 +5,9 @@ import colors from 'src/styles/colors';
 import AppLayout from 'src/components/AppLayout';
 import Spinner from 'src/components/Spinner';
 
-import AddSubredditFormContainer from '../containers/AddSubredditFormContainer';
-import DashboardNavbar from './DashboardNavbar';
+import AddSubredditFormContainer from './containers/AddSubredditFormContainer';
+import SubredditListContainer from './containers/SubredditListContainer';
+import DashboardNavbar from './components/DashboardNavbar';
 
 DashboardLayout.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -34,9 +35,13 @@ function DashboardLayout(props) {
                 {(props.isLoadingUser || !props.isUserLogged) ?
                   <Spinner mainColor={colors.orange} radius="9em" /> :
                   (
-                    <AddSubredditFormContainer
-                      onAddSubreddit={props.onAddSubreddit}
-                    />
+                    <div>
+                      <AddSubredditFormContainer
+                        onAddSubreddit={props.onAddSubreddit}
+                      />
+
+                      <SubredditListContainer />
+                    </div>
                   )}
 
               </div>

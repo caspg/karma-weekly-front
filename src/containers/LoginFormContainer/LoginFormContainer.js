@@ -13,7 +13,7 @@ class LoginFormContainer extends Component {
     const { data } = await this.props.submitLogin(email);
 
     if (!data || data.emailLogin.error) {
-      throw Error(data.error);
+      throw Error(data.emailLogin.error);
     }
   }
 

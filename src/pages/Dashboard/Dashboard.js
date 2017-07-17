@@ -9,8 +9,8 @@ import withLoggedUser from 'src/hocs/withLoggedUser';
 import withLogout from 'src/hocs/withLogout';
 import withFlashMessages from 'src/hocs/withFlashMessages';
 
-import DashboardLayout from './components/DashboardLayout';
 import withAddSubredditMutation from './graphql/withAddSubredditMutation';
+import DashboardLayout from './DashboardLayout';
 
 class Dashboard extends Component {
   static propTypes = {
@@ -44,7 +44,10 @@ class Dashboard extends Component {
     }
   }
 
-  handleSubreddit = async (subreddit) => {
+  handleAddSubreddit = async (subreddit) => {
+    // TODO: handle errors
+    // TODO maybe move this to AddSubredditFormContainer (??)
+
     try {
       const { data } = await this.props.addSubreddit(subreddit);
 
@@ -64,7 +67,7 @@ class Dashboard extends Component {
         isLoadingUser={this.props.isLoadingUser}
         isUserLogged={this.props.isUserLogged}
         onLogout={this.props.logout}
-        onAddSubreddit={this.handleSubreddit}
+        onAddSubreddit={this.handleAddSubreddit}
       />
     );
   }
