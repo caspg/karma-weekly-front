@@ -8,14 +8,11 @@ import AddSubredditFormContent from './AddSubredditFormContent';
 class AddSubredditForm extends Component {
   static propTypes = {
     onAddSubreddit: PropTypes.func.isRequired,
+    subreddits: PropTypes.arrayOf(PropTypes.string),
   }
 
-  static validateSubreddit = (subreddit) => {
-    if (!subreddit) {
-      return 'Subreddit name can\'t be empty.';
-    }
-
-    return null;
+  static defaultProps = {
+    subreddits: [],
   }
 
   constructor(props) {
@@ -31,10 +28,6 @@ class AddSubredditForm extends Component {
     this.setState({ error: msg, isSubmitting: false });
   }
 
-  handleChange = (event) => {
-    this.setState({ subreddit: event.target.value });
-  }
-
   subredditVerificationError = (subreddit) => {
     const msg = `<strong>r/${subreddit}</strong> does not exist. Please check the name and submit again.`;
     this.setError(msg);
@@ -45,20 +38,29 @@ class AddSubredditForm extends Component {
     this.setError(msg);
   }
 
+  validateSubreddit = (subreddit) => {
+    if (!subreddit) {
+      return 'Subreddit name can\'t be empty.';
+    }
+
+    if (this.props.subreddits.find(s => s === subreddit)) {
+      return `You have already subscribed to ${subreddit}.`;
+    }
+
+    return null;
+  }
+
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ isSubmitting: true });
 
     const subreddit = this.state.subreddit.trim();
-    const validationError = AddSubredditForm.validateSubreddit(subreddit);
+    const validationError = this.validateSubreddit(subreddit);
 
     if (validationError) {
       this.setError(validationError);
       return;
     }
-
-    // TODO: validate subreddit name client side
-    //   * subreddit can't be already in the list
 
     try {
       const isValidSubreddit = await redditService.verifySubreddit(subreddit);
@@ -73,6 +75,10 @@ class AddSubredditForm extends Component {
     } catch (e) {
       this.internalError();
     }
+  }
+
+  handleChange = (event) => {
+    this.setState({ subreddit: event.target.value });
   }
 
   render() {

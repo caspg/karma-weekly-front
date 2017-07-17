@@ -8,28 +8,29 @@ import AddSubredditForm from './components/AddSubredditForm';
 class AddSubredditFormContainer extends Component {
   static propTypes = {
     addSubreddit: PropTypes.func.isRequired,
+    data: PropTypes.shape({
+      user: PropTypes.shape({
+        subreddits: PropTypes.arrayOf(PropTypes.string),
+      }),
+    }).isRequired,
   }
 
   handleAddSubreddit = async (subreddit) => {
-    // TODO: handle errors
-    // TODO maybe move this to AddSubredditFormContainer (??)
+    const { data } = await this.props.addSubreddit(subreddit);
 
-    try {
-      const { data } = await this.props.addSubreddit(subreddit);
-
-      if (!data || data.addSubreddit.status !== 200) {
-        console.log('There was an error: ', data);
-      } else {
-        console.log('success');
-      }
-    } catch (e) {
-      console.log('Server error: ', e);
+    if (!data || data.addSubreddit.status !== 200) {
+      throw Error('There was an server error');
     }
   }
 
   render() {
+    const subreddits = this.props.data.user && this.props.data.user.subreddits;
+
     return (
-      <AddSubredditForm onAddSubreddit={this.handleAddSubreddit} />
+      <AddSubredditForm
+        onAddSubreddit={this.handleAddSubreddit}
+        subreddits={subreddits}
+      />
     );
   }
 }
@@ -61,4 +62,6 @@ const withAddSubredditMutation = graphql(ADD_SUBREDDIT_MUTATION, {
   }),
 });
 
-export default withAddSubredditMutation(AddSubredditFormContainer);
+export default graphql(USER_SUBREDDITS_QUERY)(
+  withAddSubredditMutation(AddSubredditFormContainer)
+);
