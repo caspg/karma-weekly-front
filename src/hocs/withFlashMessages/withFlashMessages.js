@@ -2,10 +2,53 @@ import React, { Component } from 'react';
 
 import getComponentDisplayName from 'src/utils/getComponentDisplayName';
 
-let globalFlashMessages = [];
-function updateGlobalMessages(newMessages) {
-  globalFlashMessages = newMessages;
+/**
+ * used to generate uniqe id for listeners handlers
+ */
+let uidCounter = 0;
+function uid() {
+  uidCounter += 1;
+  return uidCounter;
 }
+
+function createFlashMessagesStore() {
+  let flashMessages = [];
+  let listeners = [];
+
+  function getMessages() {
+    return flashMessages;
+  }
+
+  function subscribe(listener) {
+    listeners.push(listener);
+  }
+
+  function unsubscribe(key) {
+    const filteredListeners = listeners.filter(f => f.key !== key);
+    listeners = filteredListeners;
+  }
+
+  function publish() {
+    listeners.forEach((listener) => { listener.handler(flashMessages); });
+  }
+
+  function addMessage(message) {
+    if (!flashMessages.find(m => m.code === message.code)) {
+      flashMessages.push(message);
+      publish();
+    }
+  }
+
+  function removeMessage(messageId) {
+    const filteredMessages = flashMessages.filter(m => m.id !== messageId);
+    flashMessages = filteredMessages;
+    publish();
+  }
+
+  return { subscribe, unsubscribe, getMessages, addMessage, removeMessage };
+}
+
+const flashMessagesStore = createFlashMessagesStore();
 
 function withFlashMessages(ComposedComponent) {
   class ComponentWithFlashMessages extends Component {
@@ -16,8 +59,19 @@ function withFlashMessages(ComposedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        flashMessages: globalFlashMessages,
+        flashMessages: flashMessagesStore.getMessages(),
+        uniqueKey: uid(),
       };
+    }
+
+    componentDidMount() {
+      const key = this.state.uniqueKey;
+      const handler = (flashMessages) => { this.setState({ flashMessages }); };
+      flashMessagesStore.subscribe({ key, handler });
+    }
+
+    componentWillUnmount() {
+      flashMessagesStore.unsubscribe(this.state.uniqueKey);
     }
 
     addFlashMessage = (message) => {
@@ -27,20 +81,11 @@ function withFlashMessages(ComposedComponent) {
         }
       });
 
-      if (!globalFlashMessages.find(m => m.code === message.code)) {
-        const updatedMessages = globalFlashMessages.concat(message);
-        this.updateMessages(updatedMessages);
-      }
+      flashMessagesStore.addMessage(message);
     }
 
     removeFlashMessage = (messageId) => {
-      const updatedMessages = globalFlashMessages.filter(m => m.id !== messageId);
-      this.updateMessages(updatedMessages);
-    }
-
-    updateMessages = (updatedMessages) => {
-      updateGlobalMessages(updatedMessages);
-      this.setState({ flashMessages: updatedMessages });
+      flashMessagesStore.removeMessage(messageId);
     }
 
     render() {
