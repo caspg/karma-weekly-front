@@ -24,6 +24,12 @@ class AddSubredditForm extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.subreddits.length !== nextProps.subreddits.length && this.state.error) {
+      this.setState({ error: undefined });
+    }
+  }
+
   setError = (msg) => {
     this.setState({ error: msg, isSubmitting: false });
   }
@@ -47,7 +53,9 @@ class AddSubredditForm extends Component {
       return `You have already subscribed to ${subreddit}.`;
     }
 
-    // TODO subreddits subsciprion must be maximum 10
+    if (this.props.subreddits.length >= 6) {
+      return 'You can\'t create more than 10 subreddit subscriptions.';
+    }
 
     return null;
   }

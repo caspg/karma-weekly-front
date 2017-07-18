@@ -45,7 +45,7 @@ const user = {
   subreddits,
 };
 
-function timedOutResult(result, timeout = 1000) {
+function timedOutResult(result, timeout = 500) {
   return new Promise((resolve) => {
     setTimeout(() => (
       resolve(result)
@@ -61,7 +61,7 @@ const resolvers = {
     // emailLogin: () => Promise.reject(),
     emailLogin: () => timedOutResult({ error: null, status: 200 }),
     addSubreddit: () => timedOutResult({ error: null, status: 200 }, 1000),
-    removeSubreddit: () => timedOutResult({ error: null, status: 200 }, 1000),
+    removeSubreddit: () => timedOutResult({ error: null, status: 200 }, 500),
     verifyJWT: () => timedOutResult({ error: null, status: 200, longLiveJwt: 'long-live-json-web-token' }),
   },
 };
