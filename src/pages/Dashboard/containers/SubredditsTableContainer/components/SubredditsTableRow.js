@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import withFlashMessages from 'src/hocs/withFlashMessages';
 import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
 class SubredditsTableRow extends Component {
   static propTypes = {
     subreddit: PropTypes.string.isRequired,
     removeSubreddit: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -26,10 +28,21 @@ class SubredditsTableRow extends Component {
   }
 
   handleRemoveSubreddit = () => {
+    const { subreddit } = this.props;
     this.setState({ isRemoving: true });
 
-    // TODO handle errors
-    this.props.removeSubreddit(this.props.subreddit);
+    this.props.removeSubreddit(subreddit)
+      .catch(() => {
+        this.setState({ isRemoving: false, isOnHover: false });
+        const message = {
+          id: Date.now(),
+          type: 'alert',
+          code: `remove-${subreddit}-error`,
+          body: `There was an server error during removing <strong>${subreddit}</strong> subscription. Please try again later.`,
+        };
+
+        this.props.addFlashMessage(message);
+      });
   }
 
   render() {
@@ -76,4 +89,4 @@ class SubredditsTableRow extends Component {
   }
 }
 
-export default SubredditsTableRow;
+export default withFlashMessages(SubredditsTableRow);

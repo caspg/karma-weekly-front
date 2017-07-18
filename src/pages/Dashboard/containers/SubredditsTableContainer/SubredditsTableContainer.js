@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { gql, graphql, compose } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import USER_SUBREDDITS_QUERY from 'src/graphql/queries/userSubreddits';
@@ -20,6 +20,14 @@ class SubredditsTableContainer extends Component {
     }).isRequired,
   }
 
+  handleRemoveSubreddit = async (subreddit) => {
+    const { data } = await this.props.removeSubreddit(subreddit);
+
+    if (!data || data.removeSubreddit.status !== 200) {
+      throw Error('There was an server error');
+    }
+  }
+
   render() {
     if (this.props.data.loading) {
       return <Spinner mainColor={colors.orange} radius="8em" />;
@@ -29,7 +37,7 @@ class SubredditsTableContainer extends Component {
 
     return (
       <SubredditsTable
-        removeSubreddit={this.props.removeSubreddit}
+        removeSubreddit={this.handleRemoveSubreddit}
         subreddits={subreddits}
       />
     );

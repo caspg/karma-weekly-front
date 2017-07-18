@@ -27,11 +27,11 @@ function FlashMessageItem(props) {
 
       <style jsx>{`
         li {
-          opacity: 0.7;
+          opacity: 0.85;
         }
 
         li:hover {
-          opacity: 0.9;
+          opacity: 0.95;
         }
       `}</style>
     </li>
