@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { gql, graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 
@@ -7,60 +7,34 @@ import colors from 'src/styles/colors';
 import Spinner from 'src/components/Spinner';
 
 import SubredditsTable from './components/SubredditsTable';
+import withRemoveSubredditMutation from './graphql/withRemoveSubredditMutation';
 
-SubredditsTableContainer.propTypes = {
-  removeSubreddit: PropTypes.func.isRequired,
-  data: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
-    user: PropTypes.shape({
-      subreddits: PropTypes.arrayOf(PropTypes.string),
-    }),
-  }).isRequired,
-};
-
-function SubredditsTableContainer(props) {
-  if (props.data.loading) {
-    return <Spinner mainColor={colors.orange} radius="8em" />;
+class SubredditsTableContainer extends Component {
+  static propTypes = {
+    removeSubreddit: PropTypes.func.isRequired,
+    data: PropTypes.shape({
+      loading: PropTypes.bool.isRequired,
+      user: PropTypes.shape({
+        subreddits: PropTypes.arrayOf(PropTypes.string),
+      }),
+    }).isRequired,
   }
 
-  const subreddits = props.data.user.subreddits || [];
-
-  return (
-    <SubredditsTable
-      removeSubreddit={props.removeSubreddit}
-      subreddits={subreddits}
-    />
-  );
-}
-
-const REMOVE_SUBREDDIT_MUTATION = gql`
-  mutation removeSubreddit($subreddit: String!) {
-    removeSubreddit(subreddit: $subreddit) {
-      error
-      status
+  render() {
+    if (this.props.data.loading) {
+      return <Spinner mainColor={colors.orange} radius="8em" />;
     }
+
+    const subreddits = this.props.data.user.subreddits || [];
+
+    return (
+      <SubredditsTable
+        removeSubreddit={this.props.removeSubreddit}
+        subreddits={subreddits}
+      />
+    );
   }
-`;
-
-function removeSubredditFromUser(store, subreddit) {
-  const data = store.readQuery({ query: USER_SUBREDDITS_QUERY });
-  const updatedData = Object.assign({}, data, {
-    user: Object.assign({}, data.user, {
-      subreddits: data.user.subreddits.filter(s => s !== subreddit),
-    }),
-  });
-
-  store.writeQuery({ query: USER_SUBREDDITS_QUERY, data: updatedData });
 }
-
-const withRemoveSubredditMutation = graphql(REMOVE_SUBREDDIT_MUTATION, {
-  props: ({ mutate }) => ({
-    removeSubreddit: subreddit => mutate({
-      variables: { subreddit },
-      update: (store) => { removeSubredditFromUser(store, subreddit); },
-    }),
-  }),
-});
 
 const withUserSubredditsQuery = graphql(USER_SUBREDDITS_QUERY);
 
