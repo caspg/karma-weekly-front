@@ -55,7 +55,7 @@ function timedOutResult(result, timeout = 1000) {
 
 const resolvers = {
   Query: {
-    user: () => user,
+    user: () => timedOutResult(user, 1000),
   },
   Mutation: {
     // emailLogin: () => Promise.reject(),

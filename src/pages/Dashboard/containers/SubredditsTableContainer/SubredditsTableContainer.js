@@ -3,6 +3,9 @@ import { gql, graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import USER_SUBREDDITS_QUERY from 'src/graphql/queries/userSubreddits';
+import colors from 'src/styles/colors';
+import Spinner from 'src/components/Spinner';
+
 import SubredditsTable from './components/SubredditsTable';
 
 SubredditsTableContainer.propTypes = {
@@ -16,9 +19,8 @@ SubredditsTableContainer.propTypes = {
 };
 
 function SubredditsTableContainer(props) {
-  // TODO: display loader when data are loading
   if (props.data.loading) {
-    return null;
+    return <Spinner mainColor={colors.orange} radius="8em" />;
   }
 
   const subreddits = props.data.user.subreddits || [];
