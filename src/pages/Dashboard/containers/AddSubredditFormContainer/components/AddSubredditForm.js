@@ -80,7 +80,11 @@ class AddSubredditForm extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({ subreddit: event.target.value });
+    this.setState({
+      subreddit: event.target.value,
+      isSubmitting: false,
+      error: undefined,
+    });
   }
 
   render() {
