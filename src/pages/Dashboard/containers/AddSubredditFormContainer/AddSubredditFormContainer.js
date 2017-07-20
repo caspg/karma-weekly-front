@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { gql, graphql, compose } from 'react-apollo';
 
-import USER_SUBREDDITS_QUERY from 'src/graphql/queries/userSubreddits';
+import USER_DETAILS_QUERY from 'src/graphql/queries/userDetails';
 import AddSubredditForm from './components/AddSubredditForm';
 
 class AddSubredditFormContainer extends Component {
@@ -44,15 +44,21 @@ const ADD_SUBREDDIT_MUTATION = gql`
   }
 `;
 
+function addSubreddit(subreddits, subreddit) {
+  return subreddits ? subreddits.concat(subreddit) : [subreddit];
+}
+
 function addSubredditToUser(store, subreddit) {
-  const data = store.readQuery({ query: USER_SUBREDDITS_QUERY });
+  const data = store.readQuery({ query: USER_DETAILS_QUERY });
+  const subreddits = data.user.subreddits;
+
   const updatedData = Object.assign({}, data, {
     user: Object.assign({}, data.user, {
-      subreddits: data.user.subreddits.concat(subreddit),
+      subreddits: addSubreddit(subreddits, subreddit),
     }),
   });
 
-  store.writeQuery({ query: USER_SUBREDDITS_QUERY, data: updatedData });
+  store.writeQuery({ query: USER_DETAILS_QUERY, data: updatedData });
 }
 
 const withAddSubredditMutation = graphql(ADD_SUBREDDIT_MUTATION, {
@@ -65,6 +71,6 @@ const withAddSubredditMutation = graphql(ADD_SUBREDDIT_MUTATION, {
 });
 
 export default compose(
-  graphql(USER_SUBREDDITS_QUERY),
+  graphql(USER_DETAILS_QUERY),
   withAddSubredditMutation,
 )(AddSubredditFormContainer);

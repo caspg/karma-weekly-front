@@ -1,6 +1,6 @@
 import { gql, graphql } from 'react-apollo';
 
-import USER_SUBREDDITS_QUERY from 'src/graphql/queries/userSubreddits';
+import USER_DETAILS_QUERY from 'src/graphql/queries/userDetails';
 
 const REMOVE_SUBREDDIT_MUTATION = gql`
   mutation removeSubreddit($subreddit: String!) {
@@ -16,14 +16,14 @@ function removeSubredditFromUser(removeSubredditResult, store, subreddit) {
     return;
   }
 
-  const data = store.readQuery({ query: USER_SUBREDDITS_QUERY });
+  const data = store.readQuery({ query: USER_DETAILS_QUERY });
   const updatedData = Object.assign({}, data, {
     user: Object.assign({}, data.user, {
       subreddits: data.user.subreddits.filter(s => s !== subreddit),
     }),
   });
 
-  store.writeQuery({ query: USER_SUBREDDITS_QUERY, data: updatedData });
+  store.writeQuery({ query: USER_DETAILS_QUERY, data: updatedData });
 }
 
 const withRemoveSubredditMutation = graphql(REMOVE_SUBREDDIT_MUTATION, {

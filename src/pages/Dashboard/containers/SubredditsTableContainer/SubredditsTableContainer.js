@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import USER_SUBREDDITS_QUERY from 'src/graphql/queries/userSubreddits';
+import USER_DETAILS_QUERY from 'src/graphql/queries/userDetails';
 import colors from 'src/styles/colors';
 import Spinner from 'src/components/Spinner';
 
@@ -44,7 +44,7 @@ class SubredditsTableContainer extends Component {
   }
 }
 
-const withUserSubredditsQuery = graphql(USER_SUBREDDITS_QUERY);
+const withUserSubredditsQuery = graphql(USER_DETAILS_QUERY);
 
 export default compose(
   withRemoveSubredditMutation,

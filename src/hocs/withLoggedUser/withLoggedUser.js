@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { gql, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 
 import getComponentDisplayName from 'src/utils/getComponentDisplayName';
+import USER_DETAILS_QUERY from 'src/graphql/queries/userDetails';
 
 function withLoggedUser(ComposedComponent) {
   // eslint-disable-next-line react/prefer-stateless-function
@@ -35,15 +36,7 @@ function withLoggedUser(ComposedComponent) {
     }
   }
 
-  const USER_EMAIL_QUERY = gql`
-    query UserEmail {
-      user {
-        email
-      }
-    }
-  `;
-
-  return graphql(USER_EMAIL_QUERY)(ComponentWithLoggedUser);
+  return graphql(USER_DETAILS_QUERY)(ComponentWithLoggedUser);
 }
 
 export default withLoggedUser;
