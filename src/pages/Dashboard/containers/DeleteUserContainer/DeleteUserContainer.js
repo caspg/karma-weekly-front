@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+import DeleteUserButton from './components/DeleteUserButton';
+
 class DeleteUserContainer extends Component {
   render() {
     return (
-      <button>delete user</button>
+      <DeleteUserButton />
     );
   }
 }
