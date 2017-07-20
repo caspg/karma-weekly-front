@@ -9,7 +9,7 @@ import DeleteUserButton from './components/DeleteUserButton';
 class DeleteUserContainer extends Component {
   static propTypes = {
     client: PropTypes.instanceOf(ApolloClient).isRequired,
-    removeUser: PropTypes.func.isRequired,
+    removeUser: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   }
 
   handleRemoveUser = async () => {
