@@ -38,7 +38,7 @@ class SubredditsTableRow extends Component {
           id: Date.now(),
           type: 'alert',
           code: `remove-${subreddit}-error`,
-          body: `There was an server error during removing <strong>${subreddit}</strong> subscription. Please try again later.`,
+          body: `There was a server error removing <strong>${subreddit}</strong> subscription. Please try again later.`,
         };
 
         this.props.addFlashMessage(message);

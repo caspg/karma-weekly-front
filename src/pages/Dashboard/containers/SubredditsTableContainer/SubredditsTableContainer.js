@@ -24,7 +24,7 @@ class SubredditsTableContainer extends Component {
     const { data } = await this.props.removeSubreddit(subreddit);
 
     if (!data || data.removeSubreddit.status !== 200) {
-      throw Error('There was an server error');
+      throw Error('There was a server error');
     }
   }
 

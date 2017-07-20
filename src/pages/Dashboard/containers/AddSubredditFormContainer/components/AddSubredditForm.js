@@ -8,11 +8,7 @@ import AddSubredditFormContent from './AddSubredditFormContent';
 class AddSubredditForm extends Component {
   static propTypes = {
     onAddSubreddit: PropTypes.func.isRequired,
-    subreddits: PropTypes.arrayOf(PropTypes.string),
-  }
-
-  static defaultProps = {
-    subreddits: [],
+    subreddits: PropTypes.arrayOf(PropTypes.string).isRequired,
   }
 
   constructor(props) {

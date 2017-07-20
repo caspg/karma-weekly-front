@@ -19,12 +19,12 @@ class AddSubredditFormContainer extends Component {
     const { data } = await this.props.addSubreddit(subreddit);
 
     if (!data || data.addSubreddit.status !== 200) {
-      throw Error('There was an server error');
+      throw Error('There was a server error');
     }
   }
 
   render() {
-    const subreddits = this.props.data.user && this.props.data.user.subreddits;
+    const subreddits = (this.props.data.user && this.props.data.user.subreddits) || [];
 
     return (
       <AddSubredditForm
