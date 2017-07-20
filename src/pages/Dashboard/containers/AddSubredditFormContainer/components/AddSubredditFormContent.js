@@ -30,6 +30,7 @@ function AddSubredditFormContent(props) {
             placeholder="Type subreddit name..."
             onChange={props.onChange}
             value={props.subreddit}
+            disabled={props.isSubmitting}
           />
 
           <div className="input-group-button">
