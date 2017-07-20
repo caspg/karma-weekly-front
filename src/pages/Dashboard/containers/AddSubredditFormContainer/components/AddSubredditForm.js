@@ -53,8 +53,9 @@ class AddSubredditForm extends Component {
       return `You have already subscribed to ${subreddit}.`;
     }
 
-    if (this.props.subreddits.length >= 6) {
-      return 'You can\'t create more than 10 subreddit subscriptions.';
+    const maxSubredditCount = 10;
+    if (this.props.subreddits.length >= maxSubredditCount) {
+      return `You can't create more than ${maxSubredditCount} subreddit subscriptions.`;
     }
 
     return null;

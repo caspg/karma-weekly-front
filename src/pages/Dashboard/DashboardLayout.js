@@ -7,6 +7,7 @@ import Spinner from 'src/components/Spinner';
 
 import AddSubredditFormContainer from './containers/AddSubredditFormContainer';
 import SubredditsTableContainer from './containers/SubredditsTableContainer';
+import DeleteUserContainer from './containers/DeleteUserContainer';
 import DashboardNavbar from './components/DashboardNavbar';
 
 DashboardLayout.propTypes = {
@@ -37,6 +38,11 @@ function DashboardLayout(props) {
                     <div>
                       <AddSubredditFormContainer />
                       <SubredditsTableContainer />
+
+                      <br />
+                      <br />
+
+                      <DeleteUserContainer />
                     </div>
                   )}
 
