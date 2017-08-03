@@ -62,6 +62,7 @@ function AppLayout(props) {
 
         .secondary-section-container {
           background: #ddd;
+          overflow: scroll;
         }
       `}</style>
     </div>

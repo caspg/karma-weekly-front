@@ -1,8 +1,12 @@
 import React from 'react';
 
+import FloatingScreenshot from './components/FloatingScreenshot';
+
 function HomeImageSection() {
   return (
-    <div className="container">
+    <div>
+
+      <FloatingScreenshot />
 
       <style jsx>{`
       `}</style>
