@@ -54,11 +54,16 @@ class DeleteUserButton extends Component {
   render() {
     return (
       <ButtonWithSpinner
-        className="button alert"
+        className="button hollow secondary"
         onClick={this.handleButtonClick}
         isLoading={this.state.isDeleting}
-        customStyle={{ minWidth: 180 }}
-        spinnerColor="#fff"
+        customStyle={{
+          minWidth: 180,
+          marginBottom: 0,
+          paddingTop: 15,
+          paddingBottom: 15,
+          border: 'none',
+        }}
       >
         DELETE ACCOUNT
       </ButtonWithSpinner>

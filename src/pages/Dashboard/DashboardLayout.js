@@ -6,7 +6,6 @@ import Spinner from 'src/components/Spinner';
 
 import AddSubredditFormContainer from './containers/AddSubredditFormContainer';
 import SubredditsTableContainer from './containers/SubredditsTableContainer';
-import DeleteUserContainer from './containers/DeleteUserContainer';
 import DashboardNavbar from './components/DashboardNavbar';
 
 DashboardLayout.propTypes = {
@@ -17,7 +16,7 @@ DashboardLayout.propTypes = {
 
 function DashboardLayout(props) {
   return (
-    <div>
+    <div className="dashboard-container">
       <AppHead title="Karma Weekly | Dashboard" />
 
       <div>
@@ -35,12 +34,9 @@ function DashboardLayout(props) {
                 (
                   <div>
                     <AddSubredditFormContainer />
-                    <SubredditsTableContainer />
-
-                    <br />
-                    <br />
-
-                    <DeleteUserContainer />
+                    <div className="subreddits-table-container">
+                      <SubredditsTableContainer />
+                    </div>
                   </div>
                 )}
 
@@ -50,9 +46,22 @@ function DashboardLayout(props) {
       </div>
 
       <style jsx>{`
+        .dashboard-container {
+          min-height: 100vh;
+          background-image: url(/static/images/vintage-leaves.png);
+        }
+
         .content-container {
           margin: 0 auto;
-          margin-top: 70px;
+          margin: 70px 0;
+          padding: 50px 25px;
+          background-color: white;
+          border-radius: 5px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+
+        .subreddits-table-container {
+          margin-top: 50px;
         }
       `}</style>
     </div>

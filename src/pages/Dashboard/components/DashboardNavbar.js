@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
+import AccountMenu from './AccountMenu';
+
 class DashboardNavbar extends Component {
   static propTypes = {
     isUserLogged: PropTypes.bool.isRequired,
@@ -22,16 +24,28 @@ class DashboardNavbar extends Component {
 
   render() {
     return (
-      <div className="top-navbar row end-xs">
-        {this.props.isUserLogged && (
-          <ButtonWithSpinner
-            className="logout-button"
-            onClick={this.handleLogoutClick}
-            isLoading={this.state.isLoggingOut}
-          >
-            Log out
-          </ButtonWithSpinner>
-        )}
+      <div className="top-navbar row middle-xs">
+        <div className="col-xs-4">
+          <div className="row start-xs middle xs">
+            <h3 className="site-title">Karma Weekly</h3>
+          </div>
+        </div>
+
+        <div className="col-xs-8">
+          {this.props.isUserLogged && (
+            <div className="row end-xs middle-xs">
+              <AccountMenu />
+
+              <ButtonWithSpinner
+                className="logout-button"
+                onClick={this.handleLogoutClick}
+                isLoading={this.state.isLoggingOut}
+              >
+                Log out
+              </ButtonWithSpinner>
+            </div>
+          )}
+        </div>
 
         <style>{`
           .logout-button {
@@ -49,6 +63,14 @@ class DashboardNavbar extends Component {
         <style jsx>{`
           .top-navbar {
             min-height: 60px;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            padding-left: 50px;
+            background-color: white;
+          }
+
+          .site-title {
+            margin: 0;
           }
         `}</style>
       </div>
