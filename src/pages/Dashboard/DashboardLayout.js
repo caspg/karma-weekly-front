@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import colors from 'src/styles/colors';
-import AppLayout from 'src/components/AppLayout';
+import AppHead from 'src/components/AppHead';
 import Spinner from 'src/components/Spinner';
 
 import AddSubredditFormContainer from './containers/AddSubredditFormContainer';
@@ -19,38 +18,36 @@ DashboardLayout.propTypes = {
 function DashboardLayout(props) {
   return (
     <div>
-      <AppLayout pageTitle="Karma Weekly | Dashboard">
-        <div />
+      <AppHead title="Karma Weekly | Dashboard" />
 
-        <div>
-          <DashboardNavbar
-            isUserLogged={props.isUserLogged}
-            onLogout={props.onLogout}
-          />
+      <div>
+        <DashboardNavbar
+          isUserLogged={props.isUserLogged}
+          onLogout={props.onLogout}
+        />
 
-          <div className="row center-xs">
-            <div className="col-xs-10">
-              <div className="content-container">
+        <div className="row center-xs">
+          <div className="col-xs-10">
+            <div className="content-container">
 
-                {(props.isLoadingUser || !props.isUserLogged) ?
-                  <Spinner mainColor={colors.orange} radius="9em" /> :
-                  (
-                    <div>
-                      <AddSubredditFormContainer />
-                      <SubredditsTableContainer />
+              {(props.isLoadingUser || !props.isUserLogged) ?
+                <Spinner radius="9em" /> :
+                (
+                  <div>
+                    <AddSubredditFormContainer />
+                    <SubredditsTableContainer />
 
-                      <br />
-                      <br />
+                    <br />
+                    <br />
 
-                      <DeleteUserContainer />
-                    </div>
-                  )}
+                    <DeleteUserContainer />
+                  </div>
+                )}
 
-              </div>
             </div>
           </div>
         </div>
-      </AppLayout>
+      </div>
 
       <style jsx>{`
         .content-container {

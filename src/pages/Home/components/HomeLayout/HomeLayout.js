@@ -5,11 +5,7 @@ import AppHead from 'src/components/AppHead';
 import FlashMessagesList from 'src/containers/FlashMessagesList';
 
 HomeLayout.propTypes = {
-  pageTitle: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
 
 function HomeLayout(props) {
@@ -17,7 +13,7 @@ function HomeLayout(props) {
 
   return (
     <div>
-      <AppHead title={props.pageTitle} />
+      <AppHead title="Karma Weekly" />
 
       <div className="row sections-container">
         <div className="col-xs-12 col-md-4">

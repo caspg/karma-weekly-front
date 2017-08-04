@@ -17,7 +17,7 @@ Home.propTypes = {
 
 function Home(props) {
   return (
-    <HomeLayout pageTitle="Karma Weekly">
+    <HomeLayout>
       <HomeMainSection
         isLoadingUser={props.isLoadingUser}
         isUserLogged={props.isUserLogged}
