@@ -61,8 +61,9 @@ function AppLayout(props) {
         }
 
         .secondary-section-container {
-          background: #ddd;
           overflow: scroll;
+          background-color: #f5f5f5;
+          background-image: url(/static/images/vintage-leaves.png);
         }
       `}</style>
     </div>

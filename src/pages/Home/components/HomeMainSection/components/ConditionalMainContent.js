@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import colors from 'src/styles/colors';
 import LoginFormContainer from 'src/containers/LoginFormContainer';
 import Spinner from 'src/components/Spinner';
 
@@ -13,7 +12,7 @@ MainContent.propTypes = {
 
 function MainContent(props) {
   if (props.isLoadingUser || props.isUserLogged) {
-    return <Spinner mainColor={colors.orange} radius="9em" />;
+    return <Spinner radius="9em" />;
   }
 
   return <LoginFormContainer />;

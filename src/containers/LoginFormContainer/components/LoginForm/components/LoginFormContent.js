@@ -47,7 +47,7 @@ function LoginFormContent(props) {
 
         <ButtonWithSpinner
           type="submit"
-          className="submit-btn button small expanded warning"
+          className="submit-btn button small expanded"
           disabled={hasError || props.isSending || props.isLoginSuccess}
           isLoading={props.isSending}
         >

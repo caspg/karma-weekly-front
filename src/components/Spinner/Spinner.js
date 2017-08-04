@@ -9,7 +9,7 @@ Spinner.propTypes = {
 };
 
 Spinner.defaultProps = {
-  mainColor: '#5dc0de',
+  mainColor: '#1779ba',
   bgColor: '#ddd',
   radius: '10em',
   borderWidth: '0.25em',
