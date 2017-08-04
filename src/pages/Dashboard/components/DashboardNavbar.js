@@ -40,6 +40,7 @@ class DashboardNavbar extends Component {
                 className="logout-button"
                 onClick={this.handleLogoutClick}
                 isLoading={this.state.isLoggingOut}
+                customStyle={{ marginRight: 0 }}
               >
                 Log out
               </ButtonWithSpinner>
@@ -66,6 +67,7 @@ class DashboardNavbar extends Component {
             border-bottom: 1px solid #ddd;
             position: relative;
             padding-left: 50px;
+            padding-right: 50px;
             background-color: white;
           }
 

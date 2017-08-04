@@ -83,6 +83,7 @@ class AccountMenu extends Component {
             background-color: white;
             position: absolute;
             top: 100%;
+            right: 0;
             min-width: 180px;
             z-index: 10;
 

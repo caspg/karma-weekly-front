@@ -26,7 +26,7 @@ function DashboardLayout(props) {
         />
 
         <div className="row center-xs">
-          <div className="col-xs-6">
+          <div className="col-xs-12 col-sm-8">
             <div className="content-container">
 
               {(props.isLoadingUser || !props.isUserLogged) ?
@@ -34,6 +34,11 @@ function DashboardLayout(props) {
                 (
                   <div>
                     <AddSubredditFormContainer />
+
+                    <div className="form-info">
+                      <p><small><i>You can only subsribe to 10 subreddits!</i></small></p>
+                    </div>
+
                     <div className="subreddits-table-container">
                       <SubredditsTableContainer />
                     </div>
@@ -58,6 +63,10 @@ function DashboardLayout(props) {
           background-color: white;
           border-radius: 5px;
           box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+
+        .form-info {
+          text-align: left;
         }
 
         .subreddits-table-container {
