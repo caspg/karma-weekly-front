@@ -27,7 +27,7 @@ function DashboardLayout(props) {
         />
 
         <div className="row center-xs">
-          <div className="col-xs-10">
+          <div className="col-xs-6">
             <div className="content-container">
 
               {(props.isLoadingUser || !props.isUserLogged) ?

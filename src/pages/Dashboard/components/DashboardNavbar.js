@@ -1,41 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-DashboardNavbar.propTypes = {
-  isUserLogged: PropTypes.bool.isRequired,
-  onLogout: PropTypes.func.isRequired,
-};
+import ButtonWithSpinner from 'src/components/ButtonWithSpinner';
 
-function DashboardNavbar(props) {
-  return (
-    <div className="top-navbar row end-xs">
-      {props.isUserLogged && (
-        <button
-          className="logout-button"
-          type="button"
-          onClick={props.onLogout}
-        >
-          Log out
-        </button>
-      )}
+class DashboardNavbar extends Component {
+  static propTypes = {
+    isUserLogged: PropTypes.bool.isRequired,
+    onLogout: PropTypes.func.isRequired,
+  }
 
-      <style>{`
-        .top-navbar {
-          min-height: 60px;
-        }
+  constructor(props) {
+    super(props);
 
-        .logout-button {
-          cursor: pointer;
-          color: #424242;
-          margin-right: 50px;
-        }
+    this.state = { isLoggingOut: false };
+  }
 
-        .logout-button:hover {
-          color: black;
-        }
-      `}</style>
-    </div>
-  );
+  handleLogoutClick = () => {
+    this.setState({ isLoggingOut: true });
+    this.props.onLogout();
+  }
+
+  render() {
+    return (
+      <div className="top-navbar row end-xs">
+        {this.props.isUserLogged && (
+          <ButtonWithSpinner
+            className="logout-button"
+            onClick={this.handleLogoutClick}
+            isLoading={this.state.isLoggingOut}
+          >
+            Log out
+          </ButtonWithSpinner>
+        )}
+
+        <style>{`
+          .logout-button {
+            cursor: pointer;
+            color: #424242;
+            margin-right: 50px;
+            min-width: 90px;
+          }
+
+          .logout-button:hover {
+            color: black;
+          }
+        `}</style>
+
+        <style jsx>{`
+          .top-navbar {
+            min-height: 60px;
+          }
+        `}</style>
+      </div>
+    );
+  }
 }
 
 export default DashboardNavbar;
