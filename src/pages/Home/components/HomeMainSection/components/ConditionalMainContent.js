@@ -9,7 +9,6 @@ MainContent.propTypes = {
   isUserLogged: PropTypes.bool.isRequired,
 };
 
-
 function MainContent(props) {
   if (props.isLoadingUser || props.isUserLogged) {
     return <Spinner radius="9em" />;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ConditionalMainContent from './components/ConditionalMainContent';
+import HomeFooter from './components/HomeFooter';
 
 HomeMainSection.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -20,6 +21,8 @@ function HomeMainSection(props) {
           />
 
         </div>
+
+        <HomeFooter />
       </div>
 
       <style jsx>{`
