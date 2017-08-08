@@ -10,9 +10,9 @@ import withLoggedUser from 'src/hocs/withLoggedUser';
 import withLoggedUserRedirect from 'src/hocs/withLoggedUserRedirect';
 import withFlashMessages from 'src/hocs/withFlashMessages';
 
-import withVerifyJWTMutation from './withVerifyJWTMutation';
+import withVerifyJWTMutation from './graphql/withVerifyJWTMutation';
 import MagicLoginView from './components/MagicLoginView';
-import verifyJWT from './verifyJWT';
+import verifyJWT from './services/verifyJWT';
 
 class MagicLogin extends Component {
   static propTypes = {
