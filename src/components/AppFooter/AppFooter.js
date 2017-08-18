@@ -2,13 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 
 import routes from 'src/config/routes';
+import config from 'src/config';
 
 function AppFooter() {
   return (
     <footer>
       <small>
         <p>
-          2017 © Karmaweekly.com
+          2017 © {config.appDomainName}
         </p>
         <p>
           <Link>
