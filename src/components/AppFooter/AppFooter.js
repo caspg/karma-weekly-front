@@ -12,6 +12,12 @@ function AppFooter() {
         </p>
         <p>
           <Link>
+            <a href={routes.contact}>
+              Contact
+            </a>
+          </Link>
+          {' '}|{' '}
+          <Link>
             <a href={routes.privacyAndAntiSpam}>
               Privacy and anti-spam policy
             </a>

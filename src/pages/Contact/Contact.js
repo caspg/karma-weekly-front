@@ -5,28 +5,15 @@ import StaticNavbar from 'src/components/StaticNavbar';
 import AppFooter from 'src/components/AppFooter';
 import FloatingContentCard from 'src/components/FloatingContentCard';
 
-import PrivacySection from './components/PrivacySection';
-import AntiSpamSection from './components/AntiSpamSection';
-
-function PrivacyAndAntiSpam() {
+function Contact() {
   return (
-    <div className="local-container">
-      <AppHead title="Karma Weekly | Privacy and anti-spam policy" />
+    <div>
+      <AppHead title="Karma Weekly | Contact" />
       <StaticNavbar />
 
       <div className="row center-xs">
         <div className="col-xs-12 col-sm-8">
           <FloatingContentCard>
-            <PrivacySection />
-
-            <br />
-
-            <AntiSpamSection />
-
-            {/* TODO: */}
-            {/* Any Questions? */}
-            {/* contact us at team@karmaweekly.com */}
-
             <br />
             <br />
             <br />
@@ -46,4 +33,4 @@ function PrivacyAndAntiSpam() {
   );
 }
 
-export default PrivacyAndAntiSpam;
+export default Contact;

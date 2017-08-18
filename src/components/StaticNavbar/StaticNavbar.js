@@ -4,7 +4,7 @@ import Link from 'next/link';
 import colors from 'src/styles/colors';
 import routes from 'src/config/routes';
 
-function PrivacyAndAntiSpamNavbar() {
+function StaticNavbar() {
   return (
     <div className="top-navbar row middle-xs">
       <div className="col-xs-4">
@@ -51,4 +51,4 @@ function PrivacyAndAntiSpamNavbar() {
   );
 }
 
-export default PrivacyAndAntiSpamNavbar;
+export default StaticNavbar;
