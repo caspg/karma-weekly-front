@@ -1,5 +1,6 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
+
 import AppHead from 'src/components/AppHead';
 
 import FlashMessagesList from 'src/containers/FlashMessagesList';
