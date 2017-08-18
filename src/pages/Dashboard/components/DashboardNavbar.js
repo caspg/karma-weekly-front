@@ -48,7 +48,7 @@ class DashboardNavbar extends Component {
           )}
         </div>
 
-        <style>{`
+        <style jsx global>{`
           .logout-button {
             cursor: pointer;
             color: #424242;
