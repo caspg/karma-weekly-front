@@ -15,4 +15,11 @@ module.exports = {
 
     return config;
   },
+  exportPathMap: () => ({
+    '/': { page: '/' },
+    '/dashboard': { page: '/dashboard' },
+    '/privacy-and-anti-spam': { page: '/privacy-and-anti-spam' },
+    '/contact': { page: '/contact' },
+    '/magic/login': { page: '/magic/login' },
+  }),
 };
