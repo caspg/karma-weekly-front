@@ -11,4 +11,4 @@ plugins:
 
 custom:
   client:
-    bucketName: karma-weekly-front
+    bucketName: karma-weekly-front-${opt:stage, self:provider.stage}

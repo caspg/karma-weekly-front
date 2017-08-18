@@ -3,3 +3,18 @@
 ```bash
 $ MOCK_APOLLO=true yarn dev
 ```
+
+## Deployment to s3
+
+Deployment is handled by [serverless.com](https://serverless.com/) framework with [serverless-client-s3](https://github.com/serverless/serverless-client-s3) plugin.
+
+Make sure that `serverless` framework is installed.
+
+Before deployment next.js builds project and outputs result to `client/dist/` directory (this specific directory is required by `serverless-client-s3` plugin).
+
+Run commands:
+
+```bash
+yarn run build:static
+serverless client deploy [--stage $STAGE]
+```
