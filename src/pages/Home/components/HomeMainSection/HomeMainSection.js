@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AppFooter from 'src/components/AppFooter';
+
 import ConditionalMainContent from './components/ConditionalMainContent';
-import HomeFooter from './components/HomeFooter';
 
 HomeMainSection.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
@@ -21,8 +22,12 @@ function HomeMainSection(props) {
           />
 
         </div>
+      </div>
 
-        <HomeFooter />
+      <div className="row center-xs">
+        <div className="footer-container">
+          <AppFooter />
+        </div>
       </div>
 
       <style jsx>{`
@@ -31,6 +36,10 @@ function HomeMainSection(props) {
           width: 100%;
           max-width: 600px;
           padding: 50px 0;
+        }
+
+        .footer-container {
+          margin-bottom: 50px;
         }
       `}</style>
     </div>

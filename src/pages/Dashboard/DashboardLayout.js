@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import AppHead from 'src/components/AppHead';
+import AppFooter from 'src/components/AppFooter';
 import Spinner from 'src/components/Spinner';
+import FloatingContentCard from 'src/components/FloatingContentCard';
 
 import AddSubredditFormContainer from './containers/AddSubredditFormContainer';
 import SubredditsTableContainer from './containers/SubredditsTableContainer';
@@ -27,7 +29,7 @@ function DashboardLayout(props) {
 
         <div className="row center-xs">
           <div className="col-xs-12 col-sm-8">
-            <div className="content-container">
+            <FloatingContentCard>
 
               {(props.isLoadingUser || !props.isUserLogged) ?
                 <Spinner radius="9em" /> :
@@ -45,31 +47,31 @@ function DashboardLayout(props) {
                   </div>
                 )}
 
-            </div>
+              <div className="footer-container">
+                <AppFooter />
+              </div>
+            </FloatingContentCard>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        .dashboard-container {
-          min-height: 100vh;
+      <style jsx global>{`
+        body {
+          background-color: #f5f5f5;
           background-image: url(/static/images/vintage-leaves.png);
         }
+      `}</style>
 
-        .content-container {
-          margin: 0 auto;
-          margin: 70px 0;
-          padding: 50px 25px;
-          background-color: white;
-          border-radius: 5px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        }
-
+      <style jsx>{`
         .form-info {
           text-align: left;
         }
 
         .subreddits-table-container {
+          margin-top: 50px;
+        }
+
+        .footer-container {
           margin-top: 50px;
         }
       `}</style>

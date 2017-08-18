@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import routes from 'src/config/routes';
 
-function HomeFooter() {
+function AppFooter() {
   return (
     <footer>
       <small>
@@ -28,4 +28,4 @@ function HomeFooter() {
   );
 }
 
-export default HomeFooter;
+export default AppFooter;
