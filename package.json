@@ -34,6 +34,7 @@
     "graphql-tools": "^1.1.0",
     "jest": "^20.0.4",
     "prop-types": "^15.5.10",
-    "react-test-renderer": "^15.6.1"
+    "react-test-renderer": "^15.6.1",
+    "serverless-client-s3": "https://github.com/serverless/serverless-client-s3.git"
   }
 }
