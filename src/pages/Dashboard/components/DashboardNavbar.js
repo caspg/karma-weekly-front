@@ -34,8 +34,6 @@ class DashboardNavbar extends Component {
         <div className="col-xs-8">
           {this.props.isUserLogged && (
             <div className="row end-xs middle-xs">
-              <AccountMenu />
-
               <ButtonWithSpinner
                 className="logout-button"
                 onClick={this.handleLogoutClick}
@@ -44,6 +42,8 @@ class DashboardNavbar extends Component {
               >
                 Log out
               </ButtonWithSpinner>
+
+              <AccountMenu />
             </div>
           )}
         </div>

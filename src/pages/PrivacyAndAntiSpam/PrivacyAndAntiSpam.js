@@ -23,10 +23,6 @@ function PrivacyAndAntiSpam() {
 
             <AntiSpamSection />
 
-            {/* TODO: */}
-            {/* Any Questions? */}
-            {/* contact us at team@karmaweekly.com */}
-
             <br />
             <br />
             <br />
