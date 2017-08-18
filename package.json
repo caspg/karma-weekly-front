@@ -9,6 +9,9 @@
     "build": "next build",
     "start": "next start",
     "build:static": "next build && next export -o client/dist",
+    "serverless:deploy": "serverless client deploy",
+    "deploy:dev": "yarn run build:static && yarn run serverless:deploy",
+    "deploy:prod": "yarn run build:static && yarn run serverless:deploy -- --stage prod",
     "test": "jest",
     "test:watch": "jest --watch"
   },

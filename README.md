@@ -12,9 +12,11 @@ Make sure that `serverless` framework is installed.
 
 Before deployment next.js builds project and outputs result to `client/dist/` directory (this specific directory is required by `serverless-client-s3` plugin).
 
-Run commands:
+Run command:
 
 ```bash
-yarn run build:static
-serverless client deploy [--stage $STAGE]
+GRAPHQL_URI=something yarn run deploy:dev
+
+# or
+GRAPHQL_URI=something yarn run deploy:prod
 ```
