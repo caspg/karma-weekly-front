@@ -2,7 +2,10 @@
 
 Client side application, built with [next.js](https://github.com/zeit/next.js) framework. Hosted as static website.
 
-Website can be found at [KarmaWeekly.club](KarmaWeekly.club).
+## Links
+
+* live website: [KarmaWeekly.club](KarmaWeekly.club)
+* backend repo: [karma-weekly-backend](google.com)
 
 ## Tech stack
 
@@ -10,9 +13,19 @@ Website can be found at [KarmaWeekly.club](KarmaWeekly.club).
 * [next.js](https://github.com/zeit/next.js)
 * [react-apollo](https://github.com/apollographql/react-apollo)
 
+## Setting up
+
+* Set ENV variables
+
+  During local development run:
+
+  ```bash
+  $ cp .env.example .env
+  ```
+
 ## Running in development
 
-You should cretae `.env` file based on `.env.example` and set correct `GRAPHQL_URI` variable. Then run:
+You should set correct `GRAPHQL_URI` variable. Then run:
 
 ```bash
 yarn dev
