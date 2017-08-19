@@ -10,8 +10,8 @@
     "start": "next start",
     "build:static": "next build && next export -o client/dist",
     "serverless:deploy": "serverless client deploy",
-    "deploy:dev": "yarn run build:static && yarn run serverless:deploy",
-    "deploy:prod": "yarn run build:static && yarn run serverless:deploy -- --stage prod",
+    "deploy:dev": "yarn run build:static && BUCKET_NAME=karma-weekly-dev yarn run serverless:deploy",
+    "deploy:prod": "yarn run build:static && BUCKET_NAME=karmaweekly.club yarn run serverless:deploy",
     "test": "jest",
     "test:watch": "jest --watch"
   },
