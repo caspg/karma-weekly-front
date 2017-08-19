@@ -20,3 +20,7 @@ GRAPHQL_URI=something yarn run deploy:dev
 # or
 GRAPHQL_URI=something yarn run deploy:prod
 ```
+
+## License
+
+The project is available as open source under the terms of the MIT License.
