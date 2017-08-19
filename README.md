@@ -4,7 +4,7 @@ Client side application, built with [next.js](https://github.com/zeit/next.js) f
 
 ## Links
 
-* live website: [KarmaWeekly.club](KarmaWeekly.club)
+* live website: [KarmaWeekly.club](https://karmaweekly.club)
 * backend repo: [karma-weekly-backend](google.com)
 
 ## Tech stack
