@@ -1,3 +1,15 @@
+# karma-weekly-front
+
+Client side application, built with [next.js](https://github.com/zeit/next.js) framework. Hosted as static website.
+
+Website can be found at [KarmaWeekly.club](KarmaWeekly.club).
+
+## Tech stack
+
+* [react.js](https://github.com/facebook/react)
+* [next.js](https://github.com/zeit/next.js)
+* [react-apollo](https://github.com/apollographql/react-apollo)
+
 ## Running in development
 
 You should cretae `.env` file based on `.env.example` and set correct `GRAPHQL_URI` variable. Then run:
