@@ -38,6 +38,10 @@ function StaticNavbar() {
           background-color: white;
         }
 
+        .site-title {
+          margin: 0;
+        }
+
         a {
           margin: 0;
           color: ${colors.black};

@@ -1,4 +1,4 @@
 export default {
-  appDomainName: 'KarmaWeekly.com',
-  contactEmail: 'team@karmaweekly.com',
+  appDomainName: 'KarmaWeekly.club',
+  contactEmail: 'team@karmaweekly.club',
 };

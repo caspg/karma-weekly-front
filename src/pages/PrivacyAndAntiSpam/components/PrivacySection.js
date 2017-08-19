@@ -1,5 +1,7 @@
 import React from 'react';
 
+import config from 'src/config';
+
 import ContentSection from './ContentSection';
 
 function PrivacySection() {
@@ -7,8 +9,9 @@ function PrivacySection() {
     <ContentSection title="Privacy Policy">
       <div>
         <p>
-          <strong>KarmaWeekly.com</strong> will collect certain non-personally identify information
-          about you as you use our site. We may use this data to better understand our users.
+          <strong>{config.appDomainName}</strong> will collect certain non-personally identify
+          information about you as you use our site. We may use this data to better
+          understand our users.
         </p>
 
         <p>
