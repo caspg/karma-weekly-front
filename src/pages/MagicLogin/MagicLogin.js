@@ -9,6 +9,7 @@ import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
 import withLoggedUserRedirect from 'src/hocs/withLoggedUserRedirect';
 import withFlashMessages from 'src/hocs/withFlashMessages';
+import getUrlParameter from 'src/utils/getUrlParameter';
 
 import withVerifyJWTMutation from './graphql/withVerifyJWTMutation';
 import MagicLoginView from './components/MagicLoginView';
@@ -18,12 +19,6 @@ class MagicLogin extends Component {
   static propTypes = {
     isLoadingUser: PropTypes.bool.isRequired,
     isUserLogged: PropTypes.bool.isRequired,
-    url: PropTypes.shape({
-      replace: PropTypes.func.isRequired,
-      query: PropTypes.shape({
-        m: PropTypes.string,
-      }),
-    }).isRequired,
     submitVerifyJWT: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired,
     client: PropTypes.instanceOf(ApolloClient).isRequired,
@@ -47,7 +42,8 @@ class MagicLogin extends Component {
   }
 
   handleValidateToken = async () => {
-    const token = this.props.url.query.m;
+    // For some reason, next.js (url queries) does not work when hosting in s3
+    const token = getUrlParameter('m');
     const { errorMessage, longLiveJwt } = await verifyJWT(this.props.submitVerifyJWT, token);
 
     this.setState({ isValidatingToken: false }, () => {
