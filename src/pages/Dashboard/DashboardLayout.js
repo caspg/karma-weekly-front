@@ -14,6 +14,7 @@ DashboardLayout.propTypes = {
   isLoadingUser: PropTypes.bool.isRequired,
   isUserLogged: PropTypes.bool.isRequired,
   onLogout: PropTypes.func.isRequired,
+  userEmail: PropTypes.string.isRequired,
 };
 
 function DashboardLayout(props) {
@@ -25,6 +26,7 @@ function DashboardLayout(props) {
         <DashboardNavbar
           isUserLogged={props.isUserLogged}
           onLogout={props.onLogout}
+          userEmail={props.userEmail}
         />
 
         <div className="row center-xs">

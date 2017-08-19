@@ -9,6 +9,7 @@ class DashboardNavbar extends Component {
   static propTypes = {
     isUserLogged: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
+    userEmail: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -43,7 +44,7 @@ class DashboardNavbar extends Component {
                 Log out
               </ButtonWithSpinner>
 
-              <AccountMenu />
+              <AccountMenu userEmail={this.props.userEmail} />
             </div>
           )}
         </div>

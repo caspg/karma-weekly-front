@@ -17,6 +17,12 @@ class Dashboard extends Component {
     isUserLogged: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isRequired,
+    data: PropTypes.shape({
+      loading: PropTypes.bool.isRequired,
+      user: PropTypes.shape({
+        email: PropTypes.string,
+      }),
+    }).isRequired,
   }
 
   constructor(props) {
@@ -43,11 +49,15 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { data } = this.props;
+    const userEmail = (data && data.user && data.user.email) || '';
+
     return (
       <DashboardLayout
         isLoadingUser={this.props.isLoadingUser}
         isUserLogged={this.props.isUserLogged}
         onLogout={this.props.logout}
+        userEmail={userEmail}
       />
     );
   }

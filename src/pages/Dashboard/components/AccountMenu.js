@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import DeleteUserContainer from '../containers/DeleteUserContainer';
 
 class AccountMenu extends Component {
+  static propTypes = {
+    userEmail: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -58,6 +63,12 @@ class AccountMenu extends Component {
           >
             <ul className="menut-items-list">
               <li className="menu-item">
+                <div className="user-email">
+                  {this.props.userEmail}
+                </div>
+              </li>
+
+              <li className="menu-item">
                 <DeleteUserContainer />
               </li>
             </ul>
@@ -93,11 +104,17 @@ class AccountMenu extends Component {
           .menut-items-list {
             list-style-type: none;
             margin: 0;
-            padding-top: 20px;
           }
 
           .menu-item {
-            border-top: 1px solid #ddd;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+          }
+
+          .user-email {
+            padding: 15px 1em;
+            text-align: center;
+            color: #424242;
           }
         `}</style>
       </div>
