@@ -52,13 +52,20 @@ class SubredditsTableRow extends Component {
       minWidth: 50,
     };
 
+    const subredditUrl = `https://www.reddit.com/r/${this.props.subreddit}`;
+
     return (
       <tr
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <td className="subreddit-cell">
-          {this.props.subreddit}
+          <a
+            title={subredditUrl}
+            href={subredditUrl}
+          >
+            {this.props.subreddit}
+          </a>
         </td>
 
         <td className="remove-button-cell">
