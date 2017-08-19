@@ -4,7 +4,6 @@ import { compose } from 'react-apollo';
 
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
-import withLoggedUserRedirect from 'src/hocs/withLoggedUserRedirect';
 
 import HomeLayout from './components/HomeLayout';
 import HomeMainSection from './components/HomeMainSection';
@@ -31,5 +30,4 @@ function Home(props) {
 export default compose(
   withApollo,
   withLoggedUser,
-  withLoggedUserRedirect,
 )(Home);
