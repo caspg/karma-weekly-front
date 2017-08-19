@@ -1,4 +1,12 @@
-## Mocking graphql response in development
+## Running in development
+
+You should cretae `.env` file based on `.env.example` and set correct `GRAPHQL_URI` variable. Then run:
+
+```bash
+yarn dev
+```
+
+Alternatively, you can mock grapql responses with:
 
 ```bash
 $ MOCK_APOLLO=true yarn dev
