@@ -27,7 +27,7 @@ function HomeLayout(props) {
 
             <div className="row center-xs">
               <p className="intro-text">
-                Receive weekly top stories from your favourit subreddits. Never miss it again.
+                Receive top stories from your favourit subreddits each week. Never miss it again.
               </p>
             </div>
 
