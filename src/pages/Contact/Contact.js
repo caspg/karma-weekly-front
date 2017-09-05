@@ -1,5 +1,6 @@
 import React from 'react';
 
+import withAnalytics from 'src/hocs/withAnalytics';
 import AppHead from 'src/components/AppHead';
 import StaticNavbar from 'src/components/StaticNavbar';
 import AppFooter from 'src/components/AppFooter';
@@ -48,4 +49,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default withAnalytics(Contact);

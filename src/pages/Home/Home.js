@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'react-apollo';
 
+import withAnalytics from 'src/hocs/withAnalytics';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
 
@@ -28,6 +29,7 @@ function Home(props) {
 }
 
 export default compose(
+  withAnalytics,
   withApollo,
   withLoggedUser,
 )(Home);

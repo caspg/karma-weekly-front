@@ -4,6 +4,7 @@ import { compose } from 'react-apollo';
 import Router from 'next/router';
 
 import routes from 'src/config/routes';
+import withAnalytics from 'src/hocs/withAnalytics';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
 import withLogout from 'src/hocs/withLogout';
@@ -64,6 +65,7 @@ class Dashboard extends Component {
 }
 
 export default compose(
+  withAnalytics,
   withApollo,
   withLoggedUser,
   withLogout,

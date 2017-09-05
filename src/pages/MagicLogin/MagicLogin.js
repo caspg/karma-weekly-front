@@ -5,6 +5,7 @@ import Router from 'next/router';
 
 import jwtService from 'src/services/jwtService';
 import routes from 'src/config/routes';
+import withAnalytics from 'src/hocs/withAnalytics';
 import withApollo from 'src/hocs/withApollo';
 import withLoggedUser from 'src/hocs/withLoggedUser';
 import withLoggedUserRedirect from 'src/hocs/withLoggedUserRedirect';
@@ -67,6 +68,7 @@ class MagicLogin extends Component {
 }
 
 export default compose(
+  withAnalytics,
   withApollo,
   withApolloClient,
   withLoggedUser,
