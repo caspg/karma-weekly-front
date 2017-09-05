@@ -1,5 +1,4 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import getComponentDisplayName from 'src/utils/getComponentDisplayName';
 import { initGA, logPageView } from 'src/utils/analytics';
@@ -9,10 +8,6 @@ function withAnalytics(ComposedComponent) {
     static displayName = (
       `${getComponentDisplayName(ComposedComponent)}WithAnalytics`
     )
-
-    static propTypes = {
-      children: PropTypes.element.isRequired,
-    }
 
     componentDidMount() {
       if (!window.GA_INITIALIZED) {
@@ -25,7 +20,7 @@ function withAnalytics(ComposedComponent) {
 
     render() {
       return (
-        this.props.children
+        <ComposedComponent {...this.props} />
       );
     }
   }
